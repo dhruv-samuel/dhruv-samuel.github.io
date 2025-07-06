@@ -1,9 +1,9 @@
 ### Site Settings ###
-title               : dhruvsamuel
+title               : dhruv.samuel
 description         : >-
-                      I turn coffee :coffee: into code,
-                      use tabs over spaces
-                      and never broke production.
+                      I turn coffee :coffee into keyframes,
+                      use layers over laziness,
+                      and never crashed a render (well, almost).
 baseurl             : ""           # Change to empty quotes if you are hosting your site at <your-username>.github.io directly
 repository          : dhruv-samuel/dhruv-samuel.github.io    # Change to <your-username>/<your-username>.github.io (or remove it if you don't need remote projects)
 remote_theme        : yousinix/portfolYOU
@@ -41,7 +41,7 @@ author:
 # tumblr            : your_username.tumblr.com
 # twitch            : your_username
 # vimeo             : your_username
-# youtube           : your_channel_name
+  youtube           : dhruv.samuel
 # keybase           : your_username
 
 
