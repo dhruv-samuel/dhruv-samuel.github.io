@@ -1,0 +1,25 @@
+---
+layout: default
+---
+<div class="sidebar">
+  <h2>Projects</h2>
+  <ul>
+    <li><a href="/projects/animation/">Animation</a></li>
+    <li><a href="/projects/vfx/">VFX</a></li>
+    <li><a href="/projects/design/">Design</a></li>
+    <li><a href="/projects/art/">Art</a></li>
+  </ul>
+</div>
+
+<div class="content-with-sidebar">
+  <h1>{{ page.title }}</h1>
+  <ul>
+    {% assign cat = page.category %}
+    {% for project in site.projects %}
+      {% if project.category == cat %}
+        <li><a href="{{ project.url }}">{{ project.title }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+
