@@ -233,6 +233,14 @@ p { color: var(--text-muted); margin: 0 0 1em; }
   max-width: 60ch;
 }
 
+.eyebrow {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.6em;
+}
+
 .hero-tagline {
   color: var(--text);
   font-size: 1.15rem;
@@ -295,6 +303,58 @@ p { color: var(--text-muted); margin: 0 0 1em; }
 }
 
 .work-page h1 { margin-bottom: 2rem; }
+
+/* ==========================================================================
+   Full-bleed project feed (work listing page)
+   ========================================================================== */
+
+.project-feed {
+  display: flex;
+  flex-direction: column;
+}
+
+.feed-item {
+  display: block;
+  border-top: 1px solid var(--border);
+  transition: opacity 0.15s ease;
+}
+
+.feed-item:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.feed-item:hover {
+  opacity: 0.9;
+}
+
+.feed-media {
+  aspect-ratio: 21 / 9;
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+}
+
+.feed-item-caption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.feed-item-caption h3 { margin-bottom: 0.2em; }
+
+.feed-item-role {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.feed-item-caption .tag-list {
+  margin: 0;
+}
 
 /* ==========================================================================
    Tag list (software pills)

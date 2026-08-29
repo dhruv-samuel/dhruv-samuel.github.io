@@ -9,26 +9,30 @@ const allProjects = (await getCollection("projects")).sort((a, b) => a.data.orde
   <section class="work-page">
     <div class="wrap">
       <h1>Work</h1>
-      <div class="project-grid">
-        {allProjects.map((project) => (
-          <a class="project-card" href={withBase(`/work/${project.id}/`)}>
-            <div class="media-block">
-              {project.data.thumbnail ? (
-                <img src={withBase(project.data.thumbnail)} alt={project.data.title} />
-              ) : (
-                <div class="placeholder-media"><span>{project.data.title}</span></div>
-              )}
+    </div>
+    <div class="project-feed">
+      {allProjects.map((project) => (
+        <a class="feed-item" href={withBase(`/work/${project.id}/`)}>
+          <div class="media-block feed-media">
+            {project.data.thumbnail ? (
+              <img src={withBase(project.data.thumbnail)} alt={project.data.title} />
+            ) : (
+              <div class="placeholder-media"><span>{project.data.title}</span></div>
+            )}
+          </div>
+          <div class="feed-item-caption wrap">
+            <div>
+              <h3>{project.data.title}</h3>
+              <p class="feed-item-role">{project.data.role}</p>
             </div>
-            <h3>{project.data.title}</h3>
-            <p>{project.data.role}</p>
             {project.data.software.length > 0 && (
               <ul class="tag-list">
                 {project.data.software.slice(0, 3).map((tool) => <li>{tool}</li>)}
               </ul>
             )}
-          </a>
-        ))}
-      </div>
+          </div>
+        </a>
+      ))}
     </div>
   </section>
 </Layout>
