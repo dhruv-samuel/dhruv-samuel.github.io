@@ -1,0 +1,21 @@
+---
+import { site } from "../site.config";
+import { withBase } from "../lib/url";
+
+const { pathname } = Astro.url;
+const isWork = pathname.includes("/work");
+const isAbout = pathname.endsWith("/about/") || pathname.endsWith("/about");
+const isContact = pathname.endsWith("/contact/") || pathname.endsWith("/contact");
+---
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href={withBase("/")}>
+      <img src={withBase("/img/logo.svg")} alt={site.title} class="brand-logo" />
+    </a>
+    <nav class="site-nav">
+      <a href={withBase("/work/")} class={isWork ? "active" : ""}>Work</a>
+      <a href={withBase("/about/")} class={isAbout ? "active" : ""}>About</a>
+      <a href={withBase("/contact/")} class={isContact ? "active" : ""}>Contact</a>
+    </nav>
+  </div>
+</header>

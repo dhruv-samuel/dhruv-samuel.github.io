@@ -1,0 +1,22 @@
+---
+import { site } from "../site.config";
+
+interface Props {
+  size?: "default" | "large";
+}
+const { size = "default" } = Astro.props;
+
+const links = [
+  { key: "artstation", label: "ArtStation" },
+  { key: "linkedin", label: "LinkedIn" },
+  { key: "instagram", label: "Instagram" },
+  { key: "vimeo", label: "Vimeo" },
+  { key: "github", label: "GitHub" },
+] as const;
+---
+<div class={size === "large" ? "social-links large" : "social-links"}>
+  {links.map(({ key, label }) => {
+    const url = site.social[key];
+    return url ? <a href={url} target="_blank" rel="noopener">{label}</a> : null;
+  })}
+</div>

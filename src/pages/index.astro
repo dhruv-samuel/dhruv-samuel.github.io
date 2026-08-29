@@ -1,0 +1,66 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { site } from "../site.config";
+import { withBase } from "../lib/url";
+
+// Showreel: set heroVimeoId (recommended) to embed a muted/looping/chromeless
+// Vimeo background player, or heroVideo for a short local clip in public/video.
+const heroVimeoId = "";
+const heroVideo = "";
+
+const allProjects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
+const featured = allProjects.slice(0, 4);
+---
+<Layout>
+  <section class="hero">
+    <div class="wrap">
+      {heroVimeoId ? (
+        <div class="media-block hero-media">
+          <iframe
+            src={`https://player.vimeo.com/video/${heroVimeoId}?background=1&autoplay=1&loop=1&byline=0&title=0`}
+            allow="autoplay; fullscreen; picture-in-picture"
+            loading="lazy"
+          />
+        </div>
+      ) : heroVideo ? (
+        <div class="media-block hero-media">
+          <video src={withBase(heroVideo)} autoplay muted loop playsinline />
+        </div>
+      ) : (
+        <div class="media-block hero-media placeholder-media">
+          <span>Showreel goes here — set heroVimeoId (recommended) or heroVideo in src/pages/index.astro</span>
+        </div>
+      )}
+      <div class="hero-text">
+        <h1>{site.title}</h1>
+        <p class="hero-tagline">{site.tagline}</p>
+        <p class="hero-desc">{site.description}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="featured-work">
+    <div class="wrap">
+      <div class="section-heading">
+        <h2>Selected work</h2>
+        <a href={withBase("/work/")} class="see-all">See all work &rarr;</a>
+      </div>
+      <div class="project-grid">
+        {featured.map((project) => (
+          <a class="project-card" href={withBase(`/work/${project.id}/`)}>
+            <div class="media-block">
+              {project.data.thumbnail ? (
+                <img src={withBase(project.data.thumbnail)} alt={project.data.title} />
+              ) : (
+                <div class="placeholder-media"><span>{project.data.title}</span></div>
+              )}
+            </div>
+            <h3>{project.data.title}</h3>
+            <p>{project.data.role}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

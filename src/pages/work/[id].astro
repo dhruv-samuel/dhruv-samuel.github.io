@@ -1,0 +1,87 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
+import { withBase } from "../../lib/url";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+
+const allProjects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
+const index = allProjects.findIndex((p) => p.id === project.id);
+const prev = index > 0 ? allProjects[index - 1] : null;
+const next = index < allProjects.length - 1 ? allProjects[index + 1] : null;
+---
+<Layout title={project.data.title}>
+  <article class="project">
+    <div class="wrap">
+      <a class="back-link" href={withBase("/work/")}>&larr; All work</a>
+
+      <header class="project-header">
+        <h1>{project.data.title}</h1>
+        {project.data.role && <p class="project-role">{project.data.role}</p>}
+        {project.data.software.length > 0 && (
+          <ul class="tag-list">
+            {project.data.software.map((tool) => <li>{tool}</li>)}
+          </ul>
+        )}
+      </header>
+
+      {project.data.vimeo_id ? (
+        <div class="media-block hero-media">
+          <iframe
+            src={`https://player.vimeo.com/video/${project.data.vimeo_id}?title=0&byline=0&portrait=0`}
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          />
+        </div>
+      ) : project.data.cover_video ? (
+        <div class="media-block hero-media">
+          <video
+            src={withBase(project.data.cover_video)}
+            poster={project.data.thumbnail ? withBase(project.data.thumbnail) : undefined}
+            autoplay
+            muted
+            loop
+            playsinline
+          />
+        </div>
+      ) : project.data.thumbnail ? (
+        <div class="media-block hero-media">
+          <img src={withBase(project.data.thumbnail)} alt={project.data.title} />
+        </div>
+      ) : (
+        <div class="media-block hero-media placeholder-media">
+          <span>Add vimeo_id, cover_video, or thumbnail in this project's front matter</span>
+        </div>
+      )}
+
+      <div class="project-body">
+        <Content />
+      </div>
+
+      {project.data.gallery.length > 0 && (
+        <div class="gallery-grid">
+          {project.data.gallery.map((img) => (
+            <div class="media-block">
+              <img src={withBase(img)} alt={`${project.data.title} detail`} />
+            </div>
+          ))}
+        </div>
+      )}
+
+      <nav class="project-pager">
+        {prev ? <a class="pager-prev" href={withBase(`/work/${prev.id}/`)}>&larr; {prev.data.title}</a> : <span />}
+        {next ? <a class="pager-next" href={withBase(`/work/${next.id}/`)}>{next.data.title} &rarr;</a> : <span />}
+      </nav>
+    </div>
+  </article>
+</Layout>

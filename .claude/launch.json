@@ -2,10 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "jekyll-serve",
-      "runtimeExecutable": "C:\\Users\\ASUS\\Desktop\\portfolio-site\\.claude\\jekyll-serve.cmd",
+      "name": "astro-dev",
+      "runtimeExecutable": "C:\\Users\\ASUS\\Desktop\\portfolio-site\\.claude\\astro-dev.cmd",
       "runtimeArgs": [],
-      "port": 4000
+      "port": 4321
     }
   ]
 }

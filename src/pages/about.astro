@@ -1,0 +1,43 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../site.config";
+---
+<Layout title="About">
+  <section class="about-page">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="media-block about-photo placeholder-media">
+          <span>Add a headshot or work-in-progress photo at public/img/about.jpg</span>
+        </div>
+        <div class="about-text">
+          <h1>About</h1>
+          <p>
+            Write two or three sentences here about who you are, what you make, and what
+            you're drawn to — environments, characters, creatures, hard-surface, look dev,
+            whatever your focus is. Keep it specific: what software, what pipeline, what
+            kind of projects you want more of.
+          </p>
+          <p>
+            A second paragraph on background — school, studio experience, notable projects
+            or credits — works well here too.
+          </p>
+
+          <h2>Software</h2>
+          <ul class="tag-list stacked">
+            <li>Maya</li>
+            <li>ZBrush</li>
+            <li>Substance Painter</li>
+            <li>Nuke</li>
+            <li>Unreal Engine</li>
+          </ul>
+
+          {site.resumeUrl && (
+            <a class="button" href={site.resumeUrl} target="_blank" rel="noopener">
+              Download résumé
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
