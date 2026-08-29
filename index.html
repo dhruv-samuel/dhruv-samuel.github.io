@@ -1,0 +1,54 @@
+---
+layout: default
+title: Home
+hero_vimeo_id: "" # e.g. 123456789 — plays muted/looping/chromeless via Vimeo's background mode
+hero_video: "" # e.g. /assets/video/reel.mp4 — only for a short local clip; drop file in assets/video first
+hero_poster: "" # e.g. /assets/img/reel-poster.jpg — shown before the video plays
+---
+<section class="hero">
+  <div class="wrap">
+    {% if page.hero_vimeo_id != "" %}
+    <div class="media-block hero-media">
+      <iframe src="https://player.vimeo.com/video/{{ page.hero_vimeo_id }}?background=1&autoplay=1&loop=1&byline=0&title=0" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+    {% elsif page.hero_video != "" %}
+    <div class="media-block hero-media">
+      <video src="{{ page.hero_video | relative_url }}" {% if page.hero_poster != "" %}poster="{{ page.hero_poster | relative_url }}"{% endif %} autoplay muted loop playsinline></video>
+    </div>
+    {% else %}
+    <div class="media-block hero-media placeholder-media">
+      <span>Showreel goes here — set hero_vimeo_id (recommended) or hero_video in this page's front matter</span>
+    </div>
+    {% endif %}
+    <div class="hero-text">
+      <h1>{{ site.title }}</h1>
+      <p class="hero-tagline">{{ site.tagline }}</p>
+      <p class="hero-desc">{{ site.description }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="featured-work">
+  <div class="wrap">
+    <div class="section-heading">
+      <h2>Selected work</h2>
+      <a href="{{ '/work/' | relative_url }}" class="see-all">See all work &rarr;</a>
+    </div>
+    <div class="project-grid">
+      {% assign featured = site.projects | sort: 'order' | limit: 4 %}
+      {% for project in featured %}
+      <a class="project-card" href="{{ project.url | relative_url }}">
+        <div class="media-block">
+          {% if project.thumbnail and project.thumbnail != "" %}
+          <img src="{{ project.thumbnail | relative_url }}" alt="{{ project.title }}">
+          {% else %}
+          <div class="placeholder-media"><span>{{ project.title }}</span></div>
+          {% endif %}
+        </div>
+        <h3>{{ project.title }}</h3>
+        <p>{{ project.role }}</p>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
