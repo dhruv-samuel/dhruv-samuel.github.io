@@ -12,6 +12,7 @@
   --accent: #eac119;
   --accent-contrast: #0b0b0d;
   --accent-secondary: #4fa89c;
+  --logo-color: var(--accent);
   --overlay: rgba(0, 0, 0, 0.35);
 
   --font-sans: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -29,7 +30,18 @@ html[data-theme="light"] {
   --border: #e6dcc5;
   --accent: #171614;
   --accent-contrast: #fdfaf3;
+  --logo-color: #2f5fe0;
   --overlay: rgba(253, 250, 243, 0.35);
+}
+
+/* ==========================================================================
+   Theme-switch view transition (circular "iris" reveal from the toggle)
+   ========================================================================== */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }
 
 /* ==========================================================================
@@ -115,6 +127,8 @@ p { color: var(--text-muted); margin: 0 0 1em; }
 .brand-logo {
   height: 22px;
   width: auto;
+  color: var(--logo-color);
+  transition: color 0.3s ease;
 }
 
 .site-nav {
