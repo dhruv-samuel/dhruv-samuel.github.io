@@ -4,7 +4,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://your-username.github.io", // TODO: set to your actual GitHub Pages URL
-  base: "/", // TODO: set to "/reponame" if the repo isn't your-username.github.io, before deploying
+  site: "https://dhruv-samuel.github.io",
+  base: "/",
   integrations: [sitemap()],
 });
