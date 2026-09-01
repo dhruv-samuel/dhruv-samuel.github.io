@@ -1,25 +1,29 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import SocialLinks from "../components/SocialLinks.astro";
 import { site } from "../site.config";
+import { withBase } from "../lib/url";
 ---
 <Layout title="About">
   <section class="about-page">
     <div class="wrap">
       <div class="about-grid">
-        <div class="media-block about-photo placeholder-media">
-          <span>Add a headshot or work-in-progress photo at public/img/about.jpg</span>
+        <div class="media-block about-photo">
+          <img src={withBase("/img/about.jpg")} alt={site.title} />
         </div>
         <div class="about-text">
           <h1>About</h1>
           <p>
-            Write two or three sentences here about who you are, what you make, and what
-            you're drawn to — environments, characters, creatures, hard-surface, look dev,
-            whatever your focus is. Keep it specific: what software, what pipeline, what
-            kind of projects you want more of.
+            I'm a VFX artist and 3D generalist currently focused on environment work,
+            character art, and motion — from blocking out a scene in Maya to lighting the
+            final render. I like projects that mix technical problem-solving with a clear
+            creative vision, whether that's a hard-surface prop, a creature turnaround, or
+            compositing CG into a live-action plate.
           </p>
           <p>
-            A second paragraph on background — school, studio experience, notable projects
-            or credits — works well here too.
+            I'm currently a student looking for internship opportunities, and I'm especially
+            drawn to teams working on games, film, or personal narrative projects where craft
+            and pipeline both matter.
           </p>
 
           <h2>Software</h2>
@@ -36,6 +40,9 @@ import { site } from "../site.config";
               Download résumé
             </a>
           )}
+
+          <h2>Quick links</h2>
+          <SocialLinks size="large" />
         </div>
       </div>
     </div>
