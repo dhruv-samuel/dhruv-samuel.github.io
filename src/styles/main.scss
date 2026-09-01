@@ -12,7 +12,7 @@
   --accent: #eac119;
   --accent-contrast: #0b0b0d;
   --accent-secondary: #4fa89c;
-  --logo-color: var(--accent);
+  --mode-accent: var(--accent);
   --overlay: rgba(0, 0, 0, 0.35);
 
   --font-sans: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -23,15 +23,16 @@
 }
 
 html[data-theme="light"] {
-  --bg: #f6efe0;
-  --bg-elevated: #fdfaf3;
+  --bg: #eae4da;
+  --bg-elevated: #f3efe6;
   --text: #171614;
-  --text-muted: #7a7264;
-  --border: #e6dcc5;
+  --text-muted: #756e60;
+  --border: #d9d2c0;
   --accent: #171614;
-  --accent-contrast: #fdfaf3;
-  --logo-color: #2f5fe0;
-  --overlay: rgba(253, 250, 243, 0.35);
+  --accent-contrast: #f3efe6;
+  --accent-secondary: #9ed6df;
+  --mode-accent: #808bc5;
+  --overlay: rgba(243, 239, 230, 0.35);
 }
 
 /* ==========================================================================
@@ -127,7 +128,7 @@ p { color: var(--text-muted); margin: 0 0 1em; }
 .brand-logo {
   height: 22px;
   width: auto;
-  color: var(--logo-color);
+  color: var(--mode-accent);
   transition: color 0.3s ease;
 }
 
