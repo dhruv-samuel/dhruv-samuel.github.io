@@ -7,9 +7,11 @@ interface Props {
 const { size = "default" } = Astro.props;
 
 const links = [
-  { key: "artstation", label: "ArtStation" },
-  { key: "linkedin", label: "LinkedIn" },
   { key: "instagram", label: "Instagram" },
+  { key: "linkedin", label: "LinkedIn" },
+  { key: "youtube", label: "YouTube" },
+  { key: "tiktok", label: "TikTok" },
+  { key: "artstation", label: "ArtStation" },
   { key: "vimeo", label: "Vimeo" },
   { key: "github", label: "GitHub" },
 ] as const;
@@ -17,6 +19,52 @@ const links = [
 <div class={size === "large" ? "social-links large" : "social-links"}>
   {links.map(({ key, label }) => {
     const url = site.social[key];
-    return url ? <a href={url} target="_blank" rel="noopener">{label}</a> : null;
+    if (!url) return null;
+    return (
+      <a href={url} target="_blank" rel="noopener" aria-label={label} title={label}>
+        {key === "instagram" && (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+          </svg>
+        )}
+        {key === "linkedin" && (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+            <rect x="2" y="9" width="4" height="12" />
+            <circle cx="4" cy="4" r="2" />
+          </svg>
+        )}
+        {key === "youtube" && (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
+            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
+          </svg>
+        )}
+        {key === "tiktok" && (
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M16.5 3c.3 2 1.6 3.6 3.5 4v3c-1.4 0-2.7-.4-3.8-1.1v6.4a5.7 5.7 0 1 1-5.7-5.7c.3 0 .6 0 .9.1v3.1a2.6 2.6 0 1 0 1.8 2.5V3h3.3z" />
+          </svg>
+        )}
+        {key === "artstation" && (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 16.5l6-11 2.2 4-4.8 8.4H3z" />
+            <path d="M11.5 9.5l4.3 7.6a2 2 0 0 0 1.7 1h2.5l-6-11z" />
+            <path d="M9 20.5h11" />
+          </svg>
+        )}
+        {key === "vimeo" && (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22.4 7.6c-.1 2.2-1.6 5.1-4.6 8.9-3.1 3.9-5.7 5.9-7.9 5.9-1.3 0-2.4-1.2-3.4-3.7L4.6 12C3.9 9.5 3.1 8.3 2.3 8.3c-.2 0-.8.4-1.8 1.1L0 8.2c1.1-1 2.2-1.9 3.2-2.9C4.6 4 5.6 3.3 6.3 3.2c1.6-.2 2.6.9 3 3.3.4 2.6.7 4.2.9 4.9.5 2.2 1 3.3 1.6 3.3.5 0 1.1-.7 2-2.2.9-1.4 1.4-2.5 1.4-3.3.1-1.2-.4-1.9-1.6-1.9-.6 0-1.2.1-1.8.4 1.2-3.9 3.5-5.8 6.8-5.7 2.5.1 3.6 1.7 3.6 4.8z" />
+          </svg>
+        )}
+        {key === "github" && (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21" />
+          </svg>
+        )}
+      </a>
+    );
   })}
 </div>

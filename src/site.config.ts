@@ -7,9 +7,11 @@ export const site = {
   email: "your.email@example.com",
   colorScheme: "dark" as const,
   social: {
+    instagram: "https://www.instagram.com/dhruv.samuel",
+    linkedin: "http://www.linkedin.com/in/dhruv-samuel",
+    youtube: "https://www.youtube.com/@dhruv.samuel",
+    tiktok: "https://www.tiktok.com/@dhruv.samuel",
     artstation: "",
-    linkedin: "",
-    instagram: "",
     github: "",
     vimeo: "",
   },
