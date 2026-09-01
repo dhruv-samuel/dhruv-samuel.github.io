@@ -1,0 +1,40 @@
+---
+---
+<script>
+  function initScrollReveal() {
+    const els = document.querySelectorAll("[data-reveal]");
+    if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      els.forEach((el) => el.classList.add("is-visible"));
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+    );
+    els.forEach((el) => observer.observe(el));
+  }
+
+  function initHoverLabels() {
+    document.querySelectorAll(".hover-label").forEach((label) => {
+      const container = label.parentElement;
+      if (!container || container.dataset.hoverBound) return;
+      container.dataset.hoverBound = "true";
+      container.addEventListener("mousemove", (event) => {
+        const rect = container.getBoundingClientRect();
+        const x = event.clientX - rect.left + 16;
+        const y = event.clientY - rect.top + 16;
+        (label as HTMLElement).style.transform = `translate(${x}px, ${y}px)`;
+      });
+    });
+  }
+
+  document.addEventListener("astro:page-load", initScrollReveal);
+  document.addEventListener("astro:page-load", initHoverLabels);
+</script>

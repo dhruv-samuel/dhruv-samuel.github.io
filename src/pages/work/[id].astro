@@ -64,14 +64,14 @@ const next = index < allProjects.length - 1 ? allProjects[index + 1] : null;
         </div>
       )}
 
-      <div class="project-body">
+      <div class="project-body" data-reveal>
         <Content />
       </div>
 
       {project.data.gallery.length > 0 && (
         <div class="gallery-grid">
           {project.data.gallery.map((img) => (
-            <div class="media-block">
+            <div class="media-block" data-reveal>
               <img src={withBase(img)} alt={`${project.data.title} detail`} />
             </div>
           ))}

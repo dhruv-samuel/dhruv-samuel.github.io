@@ -43,19 +43,20 @@ const featured = allProjects.slice(0, 4);
 
   <section class="featured-work">
     <div class="wrap">
-      <div class="section-heading">
+      <div class="section-heading" data-reveal>
         <h2>Selected work</h2>
         <a href={withBase("/work/")} class="see-all">See all work &rarr;</a>
       </div>
       <div class="project-grid">
         {featured.map((project) => (
-          <a class="project-card" href={withBase(`/work/${project.id}/`)}>
+          <a class="project-card" href={withBase(`/work/${project.id}/`)} data-reveal>
             <div class="media-block">
               {project.data.thumbnail ? (
                 <img src={withBase(project.data.thumbnail)} alt={project.data.title} />
               ) : (
                 <div class="placeholder-media"><span>{project.data.title}</span></div>
               )}
+              <span class="hover-label">View project &rarr;</span>
             </div>
             <h3>{project.data.title}</h3>
             <p>{project.data.role}</p>

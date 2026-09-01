@@ -12,13 +12,14 @@ const allProjects = (await getCollection("projects")).sort((a, b) => a.data.orde
     </div>
     <div class="project-feed">
       {allProjects.map((project) => (
-        <a class="feed-item" href={withBase(`/work/${project.id}/`)}>
+        <a class="feed-item" href={withBase(`/work/${project.id}/`)} data-reveal>
           <div class="media-block feed-media">
             {project.data.thumbnail ? (
               <img src={withBase(project.data.thumbnail)} alt={project.data.title} />
             ) : (
               <div class="placeholder-media"><span>{project.data.title}</span></div>
             )}
+            <span class="hover-label">View project &rarr;</span>
           </div>
           <div class="feed-item-caption wrap">
             <div>
