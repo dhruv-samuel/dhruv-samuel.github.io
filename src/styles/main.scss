@@ -112,6 +112,7 @@ p { color: var(--text-muted); margin: 0 0 1em; }
 
 .site-nav {
   display: flex;
+  align-items: center;
   gap: 1.75rem;
 }
 
@@ -124,6 +125,39 @@ p { color: var(--text-muted); margin: 0 0 1em; }
 .site-nav a:hover,
 .site-nav a.active {
   color: var(--accent);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: color 0.15s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+}
+
+.theme-toggle .icon-sun {
+  display: none;
+}
+
+.theme-toggle .icon-moon {
+  display: block;
+}
+
+html[data-theme="light"] .theme-toggle .icon-sun {
+  display: block;
+}
+
+html[data-theme="light"] .theme-toggle .icon-moon {
+  display: none;
 }
 
 /* ==========================================================================

@@ -1,6 +1,7 @@
 ---
 import { site } from "../site.config";
 import { withBase } from "../lib/url";
+import ThemeToggle from "./ThemeToggle.astro";
 
 const { pathname } = Astro.url;
 const isWork = pathname.includes("/work");
@@ -16,6 +17,7 @@ const isContact = pathname.endsWith("/contact/") || pathname.endsWith("/contact"
       <a href={withBase("/work/")} class={isWork ? "active" : ""}>Work</a>
       <a href={withBase("/about/")} class={isAbout ? "active" : ""}>About</a>
       <a href={withBase("/contact/")} class={isContact ? "active" : ""}>Contact</a>
+      <ThemeToggle />
     </nav>
   </div>
 </header>
