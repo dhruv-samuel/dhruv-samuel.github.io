@@ -2,17 +2,34 @@
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import { withBase } from "../../lib/url";
+import { categories } from "../../lib/categories";
 
 const allProjects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
+const usedCategories = Object.keys(categories).filter((key) =>
+  allProjects.some((project) => project.data.category === key)
+) as (keyof typeof categories)[];
 ---
 <Layout title="Work">
   <section class="work-page">
     <div class="wrap">
       <h1>Work</h1>
+      {usedCategories.length > 1 && (
+        <div class="category-filter">
+          <button type="button" class="active" data-filter="all">All</button>
+          {usedCategories.map((key) => (
+            <button type="button" data-filter={key}>{categories[key]}</button>
+          ))}
+        </div>
+      )}
     </div>
     <div class="project-feed">
       {allProjects.map((project) => (
-        <a class="feed-item" href={withBase(`/work/${project.id}/`)} data-reveal>
+        <a
+          class="feed-item"
+          href={withBase(`/work/${project.id}/`)}
+          data-reveal
+          data-category={project.data.category}
+        >
           <div class="media-block feed-media">
             {project.data.thumbnail ? (
               <img src={withBase(project.data.thumbnail)} alt={project.data.title} />
@@ -23,6 +40,7 @@ const allProjects = (await getCollection("projects")).sort((a, b) => a.data.orde
           </div>
           <div class="feed-item-caption wrap">
             <div>
+              <p class="feed-item-category">{categories[project.data.category]}</p>
               <h3>{project.data.title}</h3>
               <p class="feed-item-role">{project.data.role}</p>
             </div>

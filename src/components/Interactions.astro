@@ -35,6 +35,24 @@
     });
   }
 
+  function initCategoryFilter() {
+    const buttons = document.querySelectorAll(".category-filter button");
+    if (!buttons.length || (buttons[0] as HTMLElement).dataset.bound) return;
+    buttons.forEach((btn) => {
+      (btn as HTMLElement).dataset.bound = "true";
+      btn.addEventListener("click", () => {
+        const filter = (btn as HTMLElement).dataset.filter;
+        buttons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        document.querySelectorAll<HTMLElement>(".feed-item").forEach((item) => {
+          const show = filter === "all" || item.dataset.category === filter;
+          item.style.display = show ? "" : "none";
+        });
+      });
+    });
+  }
+
   document.addEventListener("astro:page-load", initScrollReveal);
   document.addEventListener("astro:page-load", initHoverLabels);
+  document.addEventListener("astro:page-load", initCategoryFilter);
 </script>

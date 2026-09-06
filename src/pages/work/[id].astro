@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import { getCollection, render } from "astro:content";
 import { withBase } from "../../lib/url";
+import { categories } from "../../lib/categories";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
@@ -25,6 +26,7 @@ const next = index < allProjects.length - 1 ? allProjects[index + 1] : null;
       <a class="back-link" href={withBase("/work/")}>&larr; All work</a>
 
       <header class="project-header">
+        <p class="eyebrow">{categories[project.data.category]}</p>
         <h1>{project.data.title}</h1>
         {project.data.role && <p class="project-role">{project.data.role}</p>}
         {project.data.software.length > 0 && (
@@ -38,6 +40,15 @@ const next = index < allProjects.length - 1 ? allProjects[index + 1] : null;
         <div class="media-block hero-media">
           <iframe
             src={`https://player.vimeo.com/video/${project.data.vimeo_id}?title=0&byline=0&portrait=0`}
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          />
+        </div>
+      ) : project.data.youtube_id ? (
+        <div class="media-block hero-media">
+          <iframe
+            src={`https://www.youtube.com/embed/${project.data.youtube_id}`}
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen
             loading="lazy"
@@ -60,7 +71,7 @@ const next = index < allProjects.length - 1 ? allProjects[index + 1] : null;
         </div>
       ) : (
         <div class="media-block hero-media placeholder-media">
-          <span>Add vimeo_id, cover_video, or thumbnail in this project's front matter</span>
+          <span>Add vimeo_id, youtube_id, cover_video, or thumbnail in this project's front matter</span>
         </div>
       )}
 

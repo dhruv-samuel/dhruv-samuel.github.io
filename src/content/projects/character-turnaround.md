@@ -2,6 +2,7 @@
 title: "Character Turnaround — Field Medic"
 role: "Character Artist"
 order: 2
+category: "vfx-3d"
 software: ["ZBrush", "Maya", "Marvelous Designer", "Substance Painter"]
 thumbnail: ""
 vimeo_id: ""

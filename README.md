@@ -23,9 +23,14 @@ Then open http://localhost:4321
 3. **Projects** — each file in `src/content/projects/` is one project. Edit
    the four placeholder files or add new ones. Front matter fields:
    - `title`, `role`, `order` (controls sort order everywhere)
+   - `category` — one of `vfx-3d`, `amv`, `edits` (see `src/lib/categories.ts`
+     for labels). The `/work/` page only shows filter pills once 2+ categories
+     are actually in use.
    - `software` — list of tools used, shown as tags
    - `thumbnail` — path to a still under `public/`, e.g. `/img/project1.jpg`
-   - `vimeo_id` — recommended for reels/breakdowns; takes priority over `cover_video`
+   - `vimeo_id` — takes priority over `youtube_id`/`cover_video`
+   - `youtube_id` — takes priority over `cover_video`; use for pieces already
+     hosted on YouTube (e.g. AMVs/edits)
    - `cover_video` — optional, path to a short local clip for the project hero
    - `gallery` — list of additional image paths for the detail page
    - Body text below the `---` is the project write-up.
