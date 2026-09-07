@@ -1,10 +1,10 @@
 ---
 title: "killua_noticeme"
 role: "AMV Editor — Hunter x Hunter"
-order: 114
+order: 130
 category: "amv"
 software: []
-thumbnail: ""
+thumbnail: "/img/work/killua-noticeme.jpg"
 vimeo_id: "1224431068"
 youtube_id: ""
 cover_video: ""

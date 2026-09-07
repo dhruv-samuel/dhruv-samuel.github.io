@@ -69,20 +69,34 @@ const reelItems = allProjects.filter((p) => p.data.category !== "vfx-3d");
     {reelItems.length > 0 && (
       <div class="wrap reel-section" data-section="reel">
         <h2>Edits &amp; AMVs</h2>
+
+        <div class="reel-player" id="reel-player">
+          <div class="media-block reel-player-media" id="reel-player-media">
+            <img src={withBase(reelItems[0].data.thumbnail)} alt={reelItems[0].data.title} />
+            <span class="reel-player-playbtn" aria-hidden="true">&#9654;</span>
+          </div>
+          <div class="reel-player-caption">
+            <p class="reel-player-category" id="reel-player-category">{categories[reelItems[0].data.category]}</p>
+            <h3 id="reel-player-title">{reelItems[0].data.title}</h3>
+          </div>
+        </div>
+
         <div class="reel-grid">
-          {reelItems.map((project) => (
+          {reelItems.map((project, i) => (
             <button
               type="button"
-              class="reel-item"
+              class={`reel-item${i === 0 ? " is-active" : ""}`}
               data-reveal
               data-category={project.data.category}
               data-vimeo={project.data.vimeo_id}
               data-youtube={project.data.youtube_id}
               data-title={project.data.title}
+              data-category-label={categories[project.data.category]}
+              data-thumb={project.data.thumbnail ? withBase(project.data.thumbnail) : ""}
             >
               <div class="media-block reel-media">
                 {project.data.thumbnail ? (
-                  <img src={withBase(project.data.thumbnail)} alt={project.data.title} />
+                  <img src={withBase(project.data.thumbnail)} alt={project.data.title} loading="lazy" />
                 ) : (
                   <div class="placeholder-media"><span>{project.data.title}</span></div>
                 )}
@@ -95,12 +109,4 @@ const reelItems = allProjects.filter((p) => p.data.category !== "vfx-3d");
       </div>
     )}
   </section>
-
-  <div class="reel-modal" id="reel-modal" hidden>
-    <div class="reel-modal-backdrop"></div>
-    <div class="reel-modal-content">
-      <button type="button" class="reel-modal-close" aria-label="Close">&times;</button>
-      <div class="reel-modal-player"></div>
-    </div>
-  </div>
 </Layout>

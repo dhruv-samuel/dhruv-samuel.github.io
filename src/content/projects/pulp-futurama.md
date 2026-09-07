@@ -4,7 +4,7 @@ role: "3D Animator"
 order: 1
 category: "vfx-3d"
 software: []
-thumbnail: ""
+thumbnail: "/img/work/pulp-futurama.jpg"
 vimeo_id: ""
 youtube_id: "zOdv_E0WJIU"
 cover_video: ""

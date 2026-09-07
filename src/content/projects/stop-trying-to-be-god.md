@@ -1,10 +1,10 @@
 ---
 title: "Stop Trying To Be God (Takt Op. Destiny)"
 role: "AMV Editor"
-order: 111
+order: 121
 category: "amv"
 software: []
-thumbnail: ""
+thumbnail: "/img/work/stop-trying-to-be-god.jpg"
 vimeo_id: "1224433542"
 youtube_id: ""
 cover_video: ""

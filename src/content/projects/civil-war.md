@@ -1,10 +1,10 @@
 ---
 title: "Civil War"
 role: "Video Editor"
-order: 220
+order: 110
 category: "edits"
 software: []
-thumbnail: ""
+thumbnail: "/img/work/civil-war.jpg"
 vimeo_id: "1224430711"
 youtube_id: ""
 cover_video: ""

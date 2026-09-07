@@ -1,10 +1,10 @@
 ---
 title: "Alone"
 role: "Video Editor"
-order: 219
+order: 114
 category: "edits"
 software: []
-thumbnail: ""
+thumbnail: "/img/work/alone-master.jpg"
 vimeo_id: "1224430453"
 youtube_id: ""
 cover_video: ""

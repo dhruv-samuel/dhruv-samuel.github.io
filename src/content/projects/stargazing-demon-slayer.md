@@ -1,10 +1,10 @@
 ---
 title: "Stargazing (Demon Slayer Flow)"
 role: "AMV Editor — Demon Slayer"
-order: 108
+order: 137
 category: "amv"
 software: []
-thumbnail: ""
+thumbnail: "/img/work/stargazing-demon-slayer.jpg"
 vimeo_id: "1167262006"
 youtube_id: ""
 cover_video: ""

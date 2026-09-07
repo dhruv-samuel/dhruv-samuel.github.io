@@ -1,10 +1,10 @@
 ---
 title: "FENDI (Naruto Edit)"
 role: "AMV Editor — Naruto"
-order: 105
+order: 134
 category: "amv"
 software: []
-thumbnail: ""
+thumbnail: "/img/work/fendi-naruto-edit.jpg"
 vimeo_id: "1224430974"
 youtube_id: ""
 cover_video: ""

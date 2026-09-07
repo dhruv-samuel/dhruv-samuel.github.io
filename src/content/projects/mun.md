@@ -1,10 +1,10 @@
 ---
 title: "Mun"
 role: "Video Editor"
-order: 222
+order: 111
 category: "edits"
 software: []
-thumbnail: ""
+thumbnail: "/img/work/mun.jpg"
 vimeo_id: "1167263436"
 youtube_id: ""
 cover_video: ""

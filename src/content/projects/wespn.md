@@ -1,10 +1,10 @@
 ---
 title: "Wespn"
-role: "Video Editor"
-order: 209
-category: "edits"
+role: "AMV Editor — Demon Slayer"
+order: 126
+category: "amv"
 software: []
-thumbnail: ""
+thumbnail: "/img/work/wespn.jpg"
 vimeo_id: "1167260501"
 youtube_id: ""
 cover_video: ""

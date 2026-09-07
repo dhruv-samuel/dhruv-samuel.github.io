@@ -1,10 +1,10 @@
 ---
 title: "Peaches"
-role: "Video Editor"
-order: 211
-category: "edits"
+role: "AMV Editor — Demon Slayer"
+order: 133
+category: "amv"
 software: []
-thumbnail: ""
+thumbnail: "/img/work/peaches.jpg"
 vimeo_id: "1167261277"
 youtube_id: ""
 cover_video: ""

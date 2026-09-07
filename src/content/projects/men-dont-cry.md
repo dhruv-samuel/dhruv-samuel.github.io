@@ -1,10 +1,10 @@
 ---
 title: "Men Don't Cry"
 role: "Video Editor"
-order: 221
+order: 113
 category: "edits"
 software: []
-thumbnail: ""
+thumbnail: "/img/work/men-dont-cry.jpg"
 vimeo_id: "1224431444"
 youtube_id: ""
 cover_video: ""

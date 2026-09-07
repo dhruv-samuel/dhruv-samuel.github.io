@@ -1,10 +1,10 @@
 ---
 title: "Falling Down (Demon Slayer Edit)"
 role: "AMV Editor — Demon Slayer"
-order: 110
+order: 102
 category: "amv"
 software: []
-thumbnail: ""
+thumbnail: "/img/work/falling-down-demon-slayer.jpg"
 vimeo_id: "1224430965"
 youtube_id: ""
 cover_video: ""

@@ -4,7 +4,7 @@ role: "Environment/VFX Artist"
 order: 5
 category: "vfx-3d"
 software: []
-thumbnail: ""
+thumbnail: "/img/work/buoy-and-ocean.jpg"
 vimeo_id: "1224430564"
 youtube_id: ""
 cover_video: ""

@@ -1,10 +1,10 @@
 ---
 title: "Off Da Leash (Flow Edit)"
 role: "Video Editor"
-order: 202
+order: 103
 category: "edits"
 software: []
-thumbnail: ""
+thumbnail: "/img/work/off-da-leash.jpg"
 vimeo_id: "1224431795"
 youtube_id: ""
 cover_video: ""

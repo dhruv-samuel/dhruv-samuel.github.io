@@ -1,10 +1,10 @@
 ---
 title: "Offwhite"
-role: "Video Editor"
-order: 224
-category: "edits"
+role: "AMV Editor — Attack on Titan"
+order: 125
+category: "amv"
 software: []
-thumbnail: ""
+thumbnail: "/img/work/offwhite.jpg"
 vimeo_id: "1224431887"
 youtube_id: ""
 cover_video: ""

@@ -1,10 +1,10 @@
 ---
 title: "Ridin x Wanted (Fortnite Highlights #1)"
 role: "Video Editor — Gaming Montage"
-order: 201
+order: 140
 category: "edits"
 software: []
-thumbnail: ""
+thumbnail: "/img/work/ridin-x-wanted-fortnite.jpg"
 vimeo_id: "1167262627"
 youtube_id: ""
 cover_video: ""

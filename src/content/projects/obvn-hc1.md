@@ -1,10 +1,10 @@
 ---
 title: "obvn_HC1"
 role: "Video Editor"
-order: 214
+order: 106
 category: "edits"
 software: []
-thumbnail: ""
+thumbnail: "/img/work/obvn-hc1.jpg"
 vimeo_id: "1224431561"
 youtube_id: ""
 cover_video: ""

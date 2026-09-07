@@ -1,10 +1,10 @@
 ---
 title: "Fedex at the Door (JJK Edit)"
 role: "AMV Editor — Jujutsu Kaisen"
-order: 109
+order: 122
 category: "amv"
 software: []
-thumbnail: ""
+thumbnail: "/img/work/fedex-at-the-door-jjk.jpg"
 vimeo_id: "1224430969"
 youtube_id: ""
 cover_video: ""

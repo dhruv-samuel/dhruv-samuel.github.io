@@ -1,10 +1,10 @@
 ---
 title: "Blueberry Faygo (HxH x Demon Slayer)"
 role: "AMV Editor"
-order: 113
+order: 128
 category: "amv"
 software: []
-thumbnail: ""
+thumbnail: "/img/work/blueberry-faygo.jpg"
 vimeo_id: ""
 youtube_id: "XmOXlBR_Ajk"
 cover_video: ""

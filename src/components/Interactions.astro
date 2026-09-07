@@ -35,6 +35,10 @@
     });
   }
 
+  function firstVisible(items: HTMLElement[]) {
+    return items.find((item) => item.style.display !== "none");
+  }
+
   function initCategoryFilter() {
     const buttons = document.querySelectorAll(".category-filter button");
     if (!buttons.length || (buttons[0] as HTMLElement).dataset.bound) return;
@@ -50,6 +54,9 @@
         ).some((item) => item.style.display !== "none");
         section.style.display = hasVisible ? "" : "none";
       });
+      const reelItems = Array.from(document.querySelectorAll<HTMLElement>(".reel-item"));
+      const visible = firstVisible(reelItems);
+      if (visible) loadReelPoster(visible);
     };
 
     buttons.forEach((btn) => {
@@ -63,51 +70,72 @@
     });
   }
 
-  function initReelModal() {
-    const modal = document.getElementById("reel-modal");
-    const player = modal?.querySelector(".reel-modal-player");
-    const closeBtn = modal?.querySelector(".reel-modal-close");
-    const backdrop = modal?.querySelector(".reel-modal-backdrop");
-    if (!modal || !player || !closeBtn || !backdrop) return;
+  function loadReelPoster(btn: HTMLElement) {
+    const media = document.getElementById("reel-player-media");
+    const categoryEl = document.getElementById("reel-player-category");
+    const titleEl = document.getElementById("reel-player-title");
+    if (!media || !categoryEl || !titleEl) return;
 
-    const close = () => {
-      modal.hidden = true;
-      player.innerHTML = "";
-      document.body.style.overflow = "";
-    };
+    const thumb = btn.dataset.thumb || "";
+    media.innerHTML = thumb
+      ? `<img src="${thumb}" alt="${btn.dataset.title || ""}" /><span class="reel-player-playbtn" aria-hidden="true">&#9654;</span>`
+      : `<div class="placeholder-media"><span>${btn.dataset.title || ""}</span></div><span class="reel-player-playbtn" aria-hidden="true">&#9654;</span>`;
+    categoryEl.textContent = btn.dataset.categoryLabel || "";
+    titleEl.textContent = btn.dataset.title || "";
 
-    const open = (vimeoId: string, youtubeId: string, title: string) => {
-      const src = vimeoId
-        ? `https://player.vimeo.com/video/${vimeoId}?title=0&byline=0&portrait=0&autoplay=1`
-        : youtubeId
-          ? `https://www.youtube.com/embed/${youtubeId}?autoplay=1`
-          : "";
-      if (!src) return;
-      player.innerHTML = `<iframe src="${src}" title="${title}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
-      modal.hidden = false;
-      document.body.style.overflow = "hidden";
-    };
+    document.querySelectorAll(".reel-item").forEach((el) => el.classList.remove("is-active"));
+    btn.classList.add("is-active");
+  }
 
-    document.querySelectorAll<HTMLElement>(".reel-item").forEach((btn) => {
-      if (btn.dataset.bound) return;
-      btn.dataset.bound = "true";
-      btn.addEventListener("click", () => {
-        open(btn.dataset.vimeo || "", btn.dataset.youtube || "", btn.dataset.title || "");
-      });
+  function playReel(btn: HTMLElement) {
+    const media = document.getElementById("reel-player-media");
+    const categoryEl = document.getElementById("reel-player-category");
+    const titleEl = document.getElementById("reel-player-title");
+    if (!media || !categoryEl || !titleEl) return;
+
+    const vimeoId = btn.dataset.vimeo || "";
+    const youtubeId = btn.dataset.youtube || "";
+    const title = btn.dataset.title || "";
+    const src = vimeoId
+      ? `https://player.vimeo.com/video/${vimeoId}?title=0&byline=0&portrait=0&autoplay=1`
+      : youtubeId
+        ? `https://www.youtube.com/embed/${youtubeId}?autoplay=1`
+        : "";
+    if (!src) return;
+
+    // The iframe must be created synchronously within the click handler —
+    // any delay (setTimeout, etc.) drops out of the user-gesture context
+    // and browsers silently block unmuted autoplay, leaving Vimeo's paused/
+    // reload state instead of playing.
+    media.classList.add("is-switching");
+    media.innerHTML = `<iframe src="${src}" title="${title}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
+    categoryEl.textContent = btn.dataset.categoryLabel || "";
+    titleEl.textContent = title;
+    document.querySelectorAll(".reel-item").forEach((el) => el.classList.remove("is-active"));
+    btn.classList.add("is-active");
+    requestAnimationFrame(() => media.classList.remove("is-switching"));
+  }
+
+  function initReelPlayer() {
+    const player = document.getElementById("reel-player");
+    if (!player || player.dataset.bound) return;
+    player.dataset.bound = "true";
+
+    player.addEventListener("click", (e) => {
+      if ((e.target as HTMLElement).closest("iframe")) return;
+      const active = document.querySelector<HTMLElement>(".reel-item.is-active");
+      if (active) playReel(active);
     });
 
-    if (!modal.dataset.bound) {
-      modal.dataset.bound = "true";
-      closeBtn.addEventListener("click", close);
-      backdrop.addEventListener("click", close);
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && !modal.hidden) close();
-      });
-    }
+    document.querySelectorAll<HTMLElement>(".reel-item").forEach((btn) => {
+      if (btn.dataset.reelBound) return;
+      btn.dataset.reelBound = "true";
+      btn.addEventListener("click", () => playReel(btn));
+    });
   }
 
   document.addEventListener("astro:page-load", initScrollReveal);
   document.addEventListener("astro:page-load", initHoverLabels);
   document.addEventListener("astro:page-load", initCategoryFilter);
-  document.addEventListener("astro:page-load", initReelModal);
+  document.addEventListener("astro:page-load", initReelPlayer);
 </script>
