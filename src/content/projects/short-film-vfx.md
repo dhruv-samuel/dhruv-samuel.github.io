@@ -1,7 +1,7 @@
 ---
 title: "Short Film — Compositing & Lighting"
 role: "Lighting & Comp Artist"
-order: 3
+order: 21
 category: "vfx-3d"
 software: ["Nuke", "Maya", "Arnold"]
 thumbnail: ""

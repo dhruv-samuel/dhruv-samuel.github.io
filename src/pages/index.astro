@@ -10,7 +10,7 @@ const heroVimeoId = "1167262979";
 const heroVideo = "";
 
 const allProjects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
-const featured = allProjects.slice(0, 4);
+const featured = allProjects.filter((p) => p.data.category === "vfx-3d").slice(0, 4);
 ---
 <Layout>
   <section class="hero">

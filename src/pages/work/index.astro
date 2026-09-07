@@ -8,6 +8,12 @@ const allProjects = (await getCollection("projects")).sort((a, b) => a.data.orde
 const usedCategories = Object.keys(categories).filter((key) =>
   allProjects.some((project) => project.data.category === key)
 ) as (keyof typeof categories)[];
+
+// Full case-study treatment (its own detail page) is reserved for real VFX/3D
+// breakdowns. Short-form edits/AMVs get a compact reel grid that plays inline
+// instead — a dedicated page per 10-second clip isn't worth the click.
+const caseStudies = allProjects.filter((p) => p.data.category === "vfx-3d");
+const reelItems = allProjects.filter((p) => p.data.category !== "vfx-3d");
 ---
 <Layout title="Work">
   <section class="work-page">
@@ -22,36 +28,79 @@ const usedCategories = Object.keys(categories).filter((key) =>
         </div>
       )}
     </div>
-    <div class="project-feed">
-      {allProjects.map((project) => (
-        <a
-          class="feed-item"
-          href={withBase(`/work/${project.id}/`)}
-          data-reveal
-          data-category={project.data.category}
-        >
-          <div class="media-block feed-media">
-            {project.data.thumbnail ? (
-              <img src={withBase(project.data.thumbnail)} alt={project.data.title} />
-            ) : (
-              <div class="placeholder-media"><span>{project.data.title}</span></div>
-            )}
-            <span class="hover-label">View project &rarr;</span>
-          </div>
-          <div class="feed-item-caption wrap">
-            <div>
-              <p class="feed-item-category">{categories[project.data.category]}</p>
-              <h3>{project.data.title}</h3>
-              <p class="feed-item-role">{project.data.role}</p>
-            </div>
-            {project.data.software.length > 0 && (
-              <ul class="tag-list">
-                {project.data.software.slice(0, 3).map((tool) => <li>{tool}</li>)}
-              </ul>
-            )}
-          </div>
-        </a>
-      ))}
-    </div>
+
+    {caseStudies.length > 0 && (
+      <div class="case-study-section" data-section="vfx-3d">
+        <div class="wrap"><h2>Case studies</h2></div>
+        <div class="project-feed">
+          {caseStudies.map((project) => (
+            <a
+              class="feed-item"
+              href={withBase(`/work/${project.id}/`)}
+              data-reveal
+              data-category={project.data.category}
+            >
+              <div class="media-block feed-media">
+                {project.data.thumbnail ? (
+                  <img src={withBase(project.data.thumbnail)} alt={project.data.title} />
+                ) : (
+                  <div class="placeholder-media"><span>{project.data.title}</span></div>
+                )}
+                <span class="hover-label">View project &rarr;</span>
+              </div>
+              <div class="feed-item-caption wrap">
+                <div>
+                  <p class="feed-item-category">{categories[project.data.category]}</p>
+                  <h3>{project.data.title}</h3>
+                  <p class="feed-item-role">{project.data.role}</p>
+                </div>
+                {project.data.software.length > 0 && (
+                  <ul class="tag-list">
+                    {project.data.software.slice(0, 3).map((tool) => <li>{tool}</li>)}
+                  </ul>
+                )}
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {reelItems.length > 0 && (
+      <div class="wrap reel-section" data-section="reel">
+        <h2>Edits &amp; AMVs</h2>
+        <div class="reel-grid">
+          {reelItems.map((project) => (
+            <button
+              type="button"
+              class="reel-item"
+              data-reveal
+              data-category={project.data.category}
+              data-vimeo={project.data.vimeo_id}
+              data-youtube={project.data.youtube_id}
+              data-title={project.data.title}
+            >
+              <div class="media-block reel-media">
+                {project.data.thumbnail ? (
+                  <img src={withBase(project.data.thumbnail)} alt={project.data.title} />
+                ) : (
+                  <div class="placeholder-media"><span>{project.data.title}</span></div>
+                )}
+                <span class="reel-play" aria-hidden="true">&#9654;</span>
+              </div>
+              <p class="reel-title">{project.data.title}</p>
+            </button>
+          ))}
+        </div>
+      </div>
+    )}
   </section>
+
+  <div class="reel-modal" id="reel-modal" hidden>
+    <div class="reel-modal-backdrop"></div>
+    <div class="reel-modal-content">
+      <button type="button" class="reel-modal-close" aria-label="Close">&times;</button>
+      <div class="reel-modal-player"></div>
+    </div>
+  </div>
 </Layout>

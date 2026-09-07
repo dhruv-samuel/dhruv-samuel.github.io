@@ -1,7 +1,7 @@
 ---
 title: "Hard Surface Study — Transport Vehicle"
 role: "3D Modeler"
-order: 4
+order: 24
 category: "vfx-3d"
 software: ["Maya", "Substance Painter", "Marmoset Toolbag"]
 thumbnail: ""

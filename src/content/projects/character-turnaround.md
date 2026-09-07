@@ -1,7 +1,7 @@
 ---
 title: "Character Turnaround — Field Medic"
 role: "Character Artist"
-order: 2
+order: 23
 category: "vfx-3d"
 software: ["ZBrush", "Maya", "Marvelous Designer", "Substance Painter"]
 thumbnail: ""

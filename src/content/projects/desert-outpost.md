@@ -1,7 +1,7 @@
 ---
 title: "Desert Outpost"
 role: "Environment Artist"
-order: 1
+order: 22
 category: "vfx-3d"
 software: ["Maya", "ZBrush", "Substance Painter", "Unreal Engine"]
 thumbnail: ""
