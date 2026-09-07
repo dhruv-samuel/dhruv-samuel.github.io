@@ -1,6 +1,6 @@
 ---
-title: "Blueberry Faygo (HxH x Demon Slayer)"
-role: "AMV Editor"
+title: "「Blueberry Faygo 」HxH x Demon Slayer「EDIT」4K"
+role: "AMV Editor — Collab"
 order: 128
 category: "amv"
 software: []
@@ -10,4 +10,4 @@ youtube_id: "XmOXlBR_Ajk"
 cover_video: ""
 gallery: []
 ---
-A Hunter x Hunter x Demon Slayer crossover anime music video.
+A collaboration with fellow editor Aidxn, cut across Demon Slayer and Hunter x Hunter.

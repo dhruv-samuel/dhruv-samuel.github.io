@@ -1,5 +1,5 @@
 ---
-title: "Offwhite"
+title: "OFF WHITE | Attack On Titan Edit"
 role: "AMV Editor — Attack on Titan"
 order: 125
 category: "amv"
@@ -10,4 +10,4 @@ youtube_id: ""
 cover_video: ""
 gallery: []
 ---
-A video edit.
+An Attack on Titan anime edit. Edited in Adobe After Effects.

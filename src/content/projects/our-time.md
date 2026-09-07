@@ -1,6 +1,6 @@
 ---
-title: "Our Time (Mixed Anime Flow)"
-role: "AMV Editor"
+title: "Our Time | Mixed Anime Flow (free project file)"
+role: "AMV Editor — Mixed Anime"
 order: 132
 category: "amv"
 software: []
@@ -10,4 +10,4 @@ youtube_id: ""
 cover_video: ""
 gallery: []
 ---
-A mixed-anime flow-style music video edit.
+A mixed-anime flow edit spanning One Punch Man, Mob Psycho, One Piece, Hunter x Hunter, Boruto, Fire Force, God of Highschool, Jujutsu Kaisen, Naruto, and Hitori no Shita — Dhruv's first mixed edit on the channel.

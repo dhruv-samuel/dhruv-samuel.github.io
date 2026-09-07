@@ -1,5 +1,5 @@
 ---
-title: "Chrollo Lucilfer Edit // Good in Goodbye"
+title: "Chrollo Lucilfer Edit//Good in Goodbye"
 role: "AMV Editor — Hunter x Hunter"
 order: 138
 category: "amv"
@@ -10,4 +10,4 @@ youtube_id: ""
 cover_video: ""
 gallery: []
 ---
-A Hunter x Hunter anime music video.
+A Hunter x Hunter anime edit — Dhruv's very first edit on the channel.

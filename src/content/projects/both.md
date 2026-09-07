@@ -1,5 +1,5 @@
 ---
-title: "Both (Flow Edit)"
+title: "Both | Flow Edit"
 role: "Video Editor"
 order: 119
 category: "edits"
@@ -10,4 +10,4 @@ youtube_id: ""
 cover_video: ""
 gallery: []
 ---
-A flow-style video edit.
+A flow-style edit set to music. Edited in Adobe After Effects.

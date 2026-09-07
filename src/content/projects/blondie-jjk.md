@@ -1,5 +1,5 @@
 ---
-title: "Blondie (JJK Edit)"
+title: "「Blondie」Jujutsu Kaisen「4K」"
 role: "AMV Editor — Jujutsu Kaisen"
 order: 129
 category: "amv"
@@ -10,4 +10,4 @@ youtube_id: ""
 cover_video: ""
 gallery: []
 ---
-A Jujutsu Kaisen anime music video.
+A Jujutsu Kaisen anime edit — Dhruv's first 'vibey'-style edit.

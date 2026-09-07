@@ -1,6 +1,6 @@
 ---
-title: "Ridin x Wanted (Fortnite Highlights #1)"
-role: "Video Editor — Gaming Montage"
+title: "Ridin x Wanted | Fortnite Highlights #1"
+role: "Video Editor — Fortnite"
 order: 140
 category: "edits"
 software: []
@@ -10,4 +10,4 @@ youtube_id: ""
 cover_video: ""
 gallery: []
 ---
-A Fortnite gameplay highlight montage.
+A Fortnite gameplay highlight montage set to 'Ridin' and 'Wanted'.

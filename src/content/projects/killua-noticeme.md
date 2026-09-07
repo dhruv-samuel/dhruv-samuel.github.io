@@ -1,5 +1,5 @@
 ---
-title: "killua_noticeme"
+title: "「Notice Me」Killua「4K」"
 role: "AMV Editor — Hunter x Hunter"
 order: 130
 category: "amv"
@@ -10,4 +10,4 @@ youtube_id: ""
 cover_video: ""
 gallery: []
 ---
-A Hunter x Hunter anime music video.
+A Hunter x Hunter scrap edit centered on Killua, made with fellow editor Zotsuu.

@@ -1,6 +1,6 @@
 ---
-title: "Supervillain (Valorant Edit)"
-role: "Video Editor — Gaming"
+title: "Supervillain | Valorant Edit"
+role: "Video Editor — Valorant"
 order: 101
 category: "edits"
 software: []
@@ -10,4 +10,4 @@ youtube_id: ""
 cover_video: ""
 gallery: []
 ---
-A Valorant gameplay edit.
+An edit built from Valorant trailer footage. Edited in Adobe After Effects.

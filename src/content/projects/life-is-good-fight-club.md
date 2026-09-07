@@ -1,6 +1,6 @@
 ---
-title: "Life is Good (Fight Club Edit)"
-role: "Video Editor"
+title: "Life is Good | Fight club Edit"
+role: "Video Editor — Fight Club"
 order: 123
 category: "edits"
 software: []
@@ -10,4 +10,4 @@ youtube_id: ""
 cover_video: ""
 gallery: []
 ---
-A Fight Club-themed video edit.
+An edit cut to Fight Club (1999). Edited in Adobe After Effects.

@@ -1,8 +1,8 @@
 ---
 title: "Six Forty Seven"
-role: "Video Editor"
+role: "AMV Editor — Hitori no Shita"
 order: 120
-category: "edits"
+category: "amv"
 software: []
 thumbnail: "/img/work/six-forty-seven.jpg"
 vimeo_id: "1224429846"
@@ -10,4 +10,4 @@ youtube_id: ""
 cover_video: ""
 gallery: []
 ---
-A video edit.
+An anime edit cut to Hitori no Shita (The Outcast). Edited in Adobe After Effects.

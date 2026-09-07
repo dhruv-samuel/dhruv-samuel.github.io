@@ -1,5 +1,5 @@
 ---
-title: "Slidin (Flow Edit)"
+title: "Slidin | Flow Edit"
 role: "Video Editor"
 order: 118
 category: "edits"
@@ -10,4 +10,4 @@ youtube_id: ""
 cover_video: ""
 gallery: []
 ---
-A flow-style video edit.
+A two-part flow edit collaboration — the first half cut by Dhruv, the second by fellow editor Kaimen. Edited in Adobe After Effects.

@@ -1,6 +1,6 @@
 ---
-title: "Stop Trying To Be God (Takt Op. Destiny)"
-role: "AMV Editor"
+title: "Stop Trying To Be God | Takt Op. Destiny"
+role: "AMV Editor — Takt Op. Destiny"
 order: 121
 category: "amv"
 software: []
@@ -10,4 +10,4 @@ youtube_id: ""
 cover_video: ""
 gallery: []
 ---
-A Takt Op. Destiny anime music video.
+An anime edit cut to Takt Op. Destiny.

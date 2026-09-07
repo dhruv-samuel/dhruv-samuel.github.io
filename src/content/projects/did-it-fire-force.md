@@ -1,5 +1,5 @@
 ---
-title: "Did It (Fire Force)"
+title: "「Did It 🔥🖤」Fire Force「AMV/EDIT」4K"
 role: "AMV Editor — Fire Force"
 order: 136
 category: "amv"
@@ -10,4 +10,4 @@ youtube_id: ""
 cover_video: ""
 gallery: []
 ---
-A Fire Force anime music video.
+A Fire Force anime edit — the first to use an 'edgy'-style cut.

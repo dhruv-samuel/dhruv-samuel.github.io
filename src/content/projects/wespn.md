@@ -1,5 +1,5 @@
 ---
-title: "Wespn"
+title: "WESPN | Demon Slayer Edit"
 role: "AMV Editor — Demon Slayer"
 order: 126
 category: "amv"
@@ -10,4 +10,4 @@ youtube_id: ""
 cover_video: ""
 gallery: []
 ---
-A video edit.
+A Demon Slayer anime edit. Edited in Adobe After Effects.

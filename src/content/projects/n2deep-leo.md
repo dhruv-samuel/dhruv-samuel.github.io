@@ -1,6 +1,6 @@
 ---
-title: "N2Deep Leo Edit"
-role: "Video Editor"
+title: "N 2 DEEP | LEO Edit"
+role: "Video Editor — Tamil Cinema"
 order: 100
 category: "edits"
 software: []
@@ -10,4 +10,4 @@ youtube_id: ""
 cover_video: ""
 gallery: []
 ---
-A video edit.
+An edit cut to the trailer of the Tamil film Leo, directed by Lokesh Kanagaraj. Edited in Adobe After Effects.

@@ -1,8 +1,8 @@
 ---
-title: "Off Da Leash (Flow Edit)"
-role: "Video Editor"
+title: "Off Da Leash | Flow Edit"
+role: "AMV Editor — Mixed Anime"
 order: 103
-category: "edits"
+category: "amv"
 software: []
 thumbnail: "/img/work/off-da-leash.jpg"
 vimeo_id: "1224431795"
@@ -10,4 +10,4 @@ youtube_id: ""
 cover_video: ""
 gallery: []
 ---
-A flow-style video edit.
+A flow-style edit cut to mixed anime footage. Edited in Adobe After Effects.

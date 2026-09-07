@@ -1,5 +1,5 @@
 ---
-title: "Peaches"
+title: "「PEACHES」Demon Slayer [EDIT]"
 role: "AMV Editor — Demon Slayer"
 order: 133
 category: "amv"
@@ -10,4 +10,4 @@ youtube_id: ""
 cover_video: ""
 gallery: []
 ---
-A video edit.
+A Demon Slayer anime edit.

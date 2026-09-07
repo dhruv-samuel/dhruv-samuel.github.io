@@ -18,12 +18,22 @@ const pageDescription = description ?? site.description;
   <head>
     <script is:inline>
       (function () {
-        try {
-          var stored = localStorage.getItem("theme");
-          if (stored === "light" || stored === "dark") {
-            document.documentElement.setAttribute("data-theme", stored);
-          }
-        } catch (e) {}
+        function applyStoredTheme(doc) {
+          try {
+            var stored = localStorage.getItem("theme");
+            if (stored === "light" || stored === "dark") {
+              doc.documentElement.setAttribute("data-theme", stored);
+            }
+          } catch (e) {}
+        }
+        // Runs once for the initial full page load...
+        applyStoredTheme(document);
+        // ...and again before every client-side (view transition) navigation,
+        // since each page's HTML is server-rendered with the default theme
+        // and would otherwise silently reset it on every link click.
+        document.addEventListener("astro:before-swap", function (event) {
+          applyStoredTheme(event.newDocument);
+        });
       })();
     </script>
     <meta charset="utf-8" />

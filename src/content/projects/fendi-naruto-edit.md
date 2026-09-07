@@ -1,5 +1,5 @@
 ---
-title: "FENDI (Naruto Edit)"
+title: "FENDI「Naruto Edit 」"
 role: "AMV Editor — Naruto"
 order: 134
 category: "amv"
@@ -10,4 +10,4 @@ youtube_id: ""
 cover_video: ""
 gallery: []
 ---
-A Naruto anime music video.
+A Naruto Shippuden / Boruto edit — the first Naruto-focused piece on the channel.

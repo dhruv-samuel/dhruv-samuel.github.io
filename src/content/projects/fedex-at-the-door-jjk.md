@@ -1,5 +1,5 @@
 ---
-title: "Fedex at the Door (JJK Edit)"
+title: "Fedex at the Door | JJK Edit"
 role: "AMV Editor — Jujutsu Kaisen"
 order: 122
 category: "amv"
@@ -10,4 +10,4 @@ youtube_id: ""
 cover_video: ""
 gallery: []
 ---
-A Jujutsu Kaisen anime music video.
+A Jujutsu Kaisen anime edit. Edited in Adobe After Effects.

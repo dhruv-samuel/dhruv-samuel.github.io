@@ -1,5 +1,5 @@
 ---
-title: "#ImSippinTeaInYoHood — Kurapika vs Uvogin"
+title: "#ImSippinTeaInYoHood - Kurapika vs Uvogin「AMV」"
 role: "AMV Editor — Hunter x Hunter"
 order: 139
 category: "amv"
@@ -10,4 +10,4 @@ youtube_id: ""
 cover_video: ""
 gallery: []
 ---
-A Hunter x Hunter anime music video.
+Dhruv's first AMV — a Hunter x Hunter piece built around the Kurapika vs. Uvogin fight.

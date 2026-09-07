@@ -10,4 +10,4 @@ youtube_id: "zOdv_E0WJIU"
 cover_video: ""
 gallery: []
 ---
-A short 3D character animation piece.
+A recreation of an iconic scene from Pulp Fiction, reimagined in the style of Futurama. Modeling, texturing, rigging, animation, lighting, and visual effects were all done solo as a passion project blending two favorite worlds.

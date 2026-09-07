@@ -1,6 +1,6 @@
 ---
-title: "Tell Em (Mixed Anime)"
-role: "AMV Editor"
+title: "「Tell Em」Mixed Anime「AMV/EDIT」4K"
+role: "AMV Editor — Collab"
 order: 127
 category: "amv"
 software: []
@@ -10,4 +10,4 @@ youtube_id: ""
 cover_video: ""
 gallery: []
 ---
-A mixed-anime music video edit.
+A three-way collaborative edit ('trilab') with fellow editors Aidxn and parodianx, cut across Jujutsu Kaisen, Hunter x Hunter, and Fire Force.

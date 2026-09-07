@@ -1,5 +1,5 @@
 ---
-title: "Stargazing (Demon Slayer Flow)"
+title: "Travis Scott- S T A R G A Z I N G | Demon Slayer Flow AMV"
 role: "AMV Editor — Demon Slayer"
 order: 137
 category: "amv"
@@ -10,4 +10,4 @@ youtube_id: ""
 cover_video: ""
 gallery: []
 ---
-A Demon Slayer flow-style anime music video.
+A Demon Slayer flow-style AMV set to Travis Scott's 'Stargazing' — the first edit in this flow style.
