@@ -85,6 +85,7 @@ const reelItems = allProjects.filter((p) => p.data.category !== "vfx-3d");
                 )}
                 <span class="reel-play" aria-hidden="true">&#9654;</span>
               </div>
+              <p class="reel-category">{categories[project.data.category]}</p>
               <p class="reel-title">{project.data.title}</p>
             </a>
           ))}
