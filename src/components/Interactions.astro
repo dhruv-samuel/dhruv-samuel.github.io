@@ -40,13 +40,13 @@
     if (!buttons.length || (buttons[0] as HTMLElement).dataset.bound) return;
 
     const applyFilter = (filter: string) => {
-      document.querySelectorAll<HTMLElement>(".feed-item, .reel-item").forEach((item) => {
+      document.querySelectorAll<HTMLElement>(".feed-item, .reel-item, .reel-featured").forEach((item) => {
         const show = filter === "all" || item.dataset.category === filter;
         item.style.display = show ? "" : "none";
       });
       document.querySelectorAll<HTMLElement>("[data-section]").forEach((section) => {
         const hasVisible = Array.from(
-          section.querySelectorAll<HTMLElement>(".feed-item, .reel-item")
+          section.querySelectorAll<HTMLElement>(".feed-item, .reel-item, .reel-featured")
         ).some((item) => item.style.display !== "none");
         section.style.display = hasVisible ? "" : "none";
       });

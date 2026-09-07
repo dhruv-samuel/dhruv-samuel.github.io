@@ -14,6 +14,7 @@ const usedCategories = Object.keys(categories).filter((key) =>
 // project, in either section, links out to its own full detail page.
 const caseStudies = allProjects.filter((p) => p.data.category === "vfx-3d");
 const reelItems = allProjects.filter((p) => p.data.category !== "vfx-3d");
+const [featuredReel, ...restReel] = reelItems;
 ---
 <Layout title="Work">
   <section class="work-page">
@@ -69,8 +70,31 @@ const reelItems = allProjects.filter((p) => p.data.category !== "vfx-3d");
     {reelItems.length > 0 && (
       <div class="wrap reel-section" data-section="reel">
         <h2>Edits &amp; AMVs</h2>
+
+        {featuredReel && (
+          <a
+            class="reel-featured"
+            href={withBase(`/work/${featuredReel.id}/`)}
+            data-reveal
+            data-category={featuredReel.data.category}
+          >
+            <div class="media-block reel-featured-media">
+              {featuredReel.data.thumbnail ? (
+                <img src={withBase(featuredReel.data.thumbnail)} alt={featuredReel.data.title} />
+              ) : (
+                <div class="placeholder-media"><span>{featuredReel.data.title}</span></div>
+              )}
+              <span class="reel-play reel-play-lg" aria-hidden="true">&#9654;</span>
+            </div>
+            <div class="reel-featured-caption">
+              <p class="reel-category">{categories[featuredReel.data.category]}</p>
+              <h3>{featuredReel.data.title}</h3>
+            </div>
+          </a>
+        )}
+
         <div class="reel-grid">
-          {reelItems.map((project) => (
+          {restReel.map((project) => (
             <a
               class="reel-item"
               href={withBase(`/work/${project.id}/`)}
