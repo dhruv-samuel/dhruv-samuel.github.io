@@ -21,19 +21,94 @@
     els.forEach((el) => observer.observe(el));
   }
 
-  function initHoverLabels() {
-    document.querySelectorAll(".hover-label").forEach((label) => {
-      const container = label.parentElement;
-      if (!container || container.dataset.hoverBound) return;
-      container.dataset.hoverBound = "true";
-      container.addEventListener("mousemove", (event) => {
-        const rect = container.getBoundingClientRect();
-        const x = event.clientX - rect.left + 16;
-        const y = event.clientY - rect.top + 16;
-        (label as HTMLElement).style.transform = `translate(${x}px, ${y}px)`;
+  function initMottoInteraction() {
+    const motto = document.getElementById("motto");
+    if (!motto || motto.dataset.mottoBound) return;
+    motto.dataset.mottoBound = "true";
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const chars = Array.from(motto.querySelectorAll<HTMLElement>(".motto-char"));
+    const radius = 130;
+    const strength = 20;
+    let ticking = false;
+    let lastX = 0;
+    let lastY = 0;
+
+    const update = () => {
+      chars.forEach((char) => {
+        const rect = char.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = cx - lastX;
+        const dy = cy - lastY;
+        const dist = Math.hypot(dx, dy);
+        if (dist < radius) {
+          const power = (radius - dist) / radius;
+          const nx = dist === 0 ? 0 : dx / dist;
+          const ny = dist === 0 ? 0 : dy / dist;
+          char.style.transform = `translate(${nx * power * strength}px, ${ny * power * strength}px)`;
+        } else {
+          char.style.transform = "";
+        }
       });
+      ticking = false;
+    };
+
+    motto.addEventListener("mousemove", (e) => {
+      lastX = e.clientX;
+      lastY = e.clientY;
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    });
+
+    motto.addEventListener("mouseleave", () => {
+      chars.forEach((char) => (char.style.transform = ""));
     });
   }
+
+  function initPageTransitions() {
+    const overlay = document.getElementById("page-transition-overlay");
+    if (!overlay || overlay.dataset.bound) return;
+    overlay.dataset.bound = "true";
+
+    const COVER_MS = 480;
+    const REVEAL_MS = 480;
+    let coverStartedAt = 0;
+
+    const reduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Start the wipe the moment navigation is requested — this fires well
+    // before the new page is ready, so the cover animation has time to play
+    // out fully before astro:page-load asks it to reveal.
+    document.addEventListener("astro:before-preparation", () => {
+      if (reduced()) return;
+      coverStartedAt = performance.now();
+      overlay.classList.remove("no-transition", "is-revealing");
+      overlay.classList.add("is-covering");
+    });
+
+    document.addEventListener("astro:page-load", () => {
+      if (!overlay.classList.contains("is-covering")) return;
+      const wait = Math.max(0, COVER_MS - (performance.now() - coverStartedAt));
+      setTimeout(() => {
+        overlay.classList.remove("is-covering");
+        overlay.classList.add("is-revealing");
+        setTimeout(() => {
+          // Reset instantly (no-transition) instead of animating back to the
+          // starting position — otherwise the bar visibly sweeps across the
+          // screen a second time right after revealing the new page.
+          overlay.classList.add("no-transition");
+          overlay.classList.remove("is-revealing");
+          void overlay.offsetHeight;
+          requestAnimationFrame(() => overlay.classList.remove("no-transition"));
+        }, REVEAL_MS);
+      }, wait);
+    });
+  }
+
+  initPageTransitions();
 
   function initCategoryFilter() {
     const buttons = document.querySelectorAll(".category-filter button");
@@ -58,6 +133,6 @@
   }
 
   document.addEventListener("astro:page-load", initScrollReveal);
-  document.addEventListener("astro:page-load", initHoverLabels);
+  document.addEventListener("astro:page-load", initMottoInteraction);
   document.addEventListener("astro:page-load", initCategoryFilter);
 </script>

@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { getCollection } from "astro:content";
 import { site } from "../site.config";
 import { withBase } from "../lib/url";
 
@@ -9,8 +8,12 @@ import { withBase } from "../lib/url";
 const heroVimeoId = "1167262979";
 const heroVideo = "";
 
-const allProjects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
-const featured = allProjects.filter((p) => p.data.category === "vfx-3d").slice(0, 4);
+// Split into per-character spans so the mouse-reactive motto effect
+// (Interactions.astro) can displace each letter independently.
+const mottoChars = [..."Consumption ∝ Creativity"].map((ch) => ({
+  ch: ch === " " ? " " : ch,
+  isSymbol: ch === "∝",
+}));
 ---
 <Layout>
   <section class="hero">
@@ -42,35 +45,23 @@ const featured = allProjects.filter((p) => p.data.category === "vfx-3d").slice(0
     <span class="hero-scroll-cue" aria-hidden="true"></span>
   </section>
 
-  <section class="featured-work">
+  <section class="motto" id="motto">
     <div class="wrap">
-      <div class="section-heading" data-reveal>
-        <h2>Selected work</h2>
-        <a href={withBase("/work/")} class="see-all">See all work &rarr;</a>
-      </div>
-      <div class="project-grid">
-        {featured.map((project) => (
-          <a class="project-card" href={withBase(`/work/${project.id}/`)} data-reveal>
-            <div class="media-block">
-              {project.data.thumbnail ? (
-                <img src={withBase(project.data.thumbnail)} alt={project.data.title} />
-              ) : (
-                <div class="placeholder-media"><span>{project.data.title}</span></div>
-              )}
-              <span class="hover-label">View project &rarr;</span>
-            </div>
-            <h3>{project.data.title}</h3>
-            <p>{project.data.role}</p>
-          </a>
+      <p class="motto-text" data-reveal>
+        {mottoChars.map(({ ch, isSymbol }) => (
+          <span class:list={["motto-char", { "motto-symbol": isSymbol, "motto-space": ch === " " }]}>
+            {ch === " " ? " " : ch}
+          </span>
         ))}
-      </div>
+      </p>
+      <p class="motto-values" data-reveal>Change &bull; Unity &bull; Equity</p>
     </div>
   </section>
 
-  <section class="motto">
-    <div class="wrap">
-      <p class="motto-text" data-reveal>Consumption <span class="motto-symbol">&#8733;</span> Creativity</p>
-      <p class="motto-values" data-reveal>Change &bull; Unity &bull; Equity</p>
-    </div>
+  <section class="work-cta">
+    <a href={withBase("/work/")} class="work-cta-link" data-reveal>
+      <span class="work-cta-text">See my work</span>
+      <span class="work-cta-arrow" aria-hidden="true">&rarr;</span>
+    </a>
   </section>
 </Layout>
