@@ -14,24 +14,24 @@ const featured = allProjects.filter((p) => p.data.category === "vfx-3d").slice(0
 ---
 <Layout>
   <section class="hero">
-    <div class="wrap">
-      {heroVimeoId ? (
-        <div class="media-block hero-media">
-          <iframe
-            src={`https://player.vimeo.com/video/${heroVimeoId}?background=1&autoplay=1&loop=1&byline=0&title=0`}
-            allow="autoplay; fullscreen; picture-in-picture"
-            loading="lazy"
-          />
-        </div>
-      ) : heroVideo ? (
-        <div class="media-block hero-media">
-          <video src={withBase(heroVideo)} autoplay muted loop playsinline />
-        </div>
-      ) : (
-        <div class="media-block hero-media placeholder-media">
-          <span>Showreel goes here — set heroVimeoId (recommended) or heroVideo in src/pages/index.astro</span>
-        </div>
-      )}
+    {heroVimeoId ? (
+      <div class="media-block hero-media">
+        <iframe
+          src={`https://player.vimeo.com/video/${heroVimeoId}?background=1&autoplay=1&loop=1&byline=0&title=0`}
+          allow="autoplay; fullscreen; picture-in-picture"
+          loading="lazy"
+        />
+      </div>
+    ) : heroVideo ? (
+      <div class="media-block hero-media">
+        <video src={withBase(heroVideo)} autoplay muted loop playsinline />
+      </div>
+    ) : (
+      <div class="media-block hero-media placeholder-media">
+        <span>Showreel goes here — set heroVimeoId (recommended) or heroVideo in src/pages/index.astro</span>
+      </div>
+    )}
+    <div class="wrap hero-wrap">
       <div class="hero-text">
         <p class="eyebrow">Portfolio of —</p>
         <h1>{site.title}</h1>
@@ -39,6 +39,7 @@ const featured = allProjects.filter((p) => p.data.category === "vfx-3d").slice(0
         <p class="hero-desc">{site.description}</p>
       </div>
     </div>
+    <span class="hero-scroll-cue" aria-hidden="true"></span>
   </section>
 
   <section class="featured-work">
