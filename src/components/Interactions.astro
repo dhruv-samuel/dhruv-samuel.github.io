@@ -27,6 +27,40 @@
     carousel.dataset.bound = "true";
 
     const slides = Array.from(carousel.querySelectorAll<HTMLElement>(".hero-slide"));
+    if (!slides.length) return;
+    const dots = Array.from(carousel.querySelectorAll<HTMLElement>(".carousel-dot"));
+
+    const resetToPoster = (slide: HTMLElement) => {
+      const media = slide.querySelector<HTMLElement>("[data-carousel-media]");
+      if (!media) return;
+      const thumb = slide.dataset.thumb || "";
+      const title = slide.dataset.title || "";
+      media.innerHTML = thumb
+        ? `<img src="${thumb}" alt="${title}" /><span class="reel-play reel-play-lg" aria-hidden="true">&#9654;</span>`
+        : `<div class="placeholder-media"><span>${title}</span></div><span class="reel-play reel-play-lg" aria-hidden="true">&#9654;</span>`;
+    };
+
+    const play = (slide: HTMLElement) => {
+      const media = slide.querySelector<HTMLElement>("[data-carousel-media]");
+      if (!media) return;
+      const vimeoId = slide.dataset.vimeo || "";
+      const youtubeId = slide.dataset.youtube || "";
+      const title = slide.dataset.title || "";
+      const src = vimeoId
+        ? `https://player.vimeo.com/video/${vimeoId}?title=0&byline=0&portrait=0&autoplay=1`
+        : youtubeId
+          ? `https://www.youtube.com/embed/${youtubeId}?autoplay=1`
+          : "";
+      if (!src) return;
+      // Created synchronously inside the click handler so the browser still
+      // treats this as a user gesture and allows unmuted autoplay.
+      media.innerHTML = `<iframe src="${src}" title="${title}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
+    };
+
+    slides.forEach((slide) => {
+      slide.querySelector("[data-carousel-media]")?.addEventListener("click", () => play(slide));
+    });
+
     if (slides.length < 2) return;
 
     let index = Math.max(
@@ -34,20 +68,18 @@
       slides.findIndex((s) => s.classList.contains("is-active"))
     );
 
-    const show = (nextIndex: number) => {
+    const goTo = (nextIndex: number) => {
+      resetToPoster(slides[index]);
       slides[index].classList.remove("is-active");
+      dots[index]?.classList.remove("is-active");
       index = (nextIndex + slides.length) % slides.length;
       slides[index].classList.add("is-active");
+      dots[index]?.classList.add("is-active");
     };
 
-    carousel.querySelector(".carousel-prev")?.addEventListener("click", (e) => {
-      e.preventDefault();
-      show(index - 1);
-    });
-    carousel.querySelector(".carousel-next")?.addEventListener("click", (e) => {
-      e.preventDefault();
-      show(index + 1);
-    });
+    carousel.querySelector(".carousel-prev")?.addEventListener("click", () => goTo(index - 1));
+    carousel.querySelector(".carousel-next")?.addEventListener("click", () => goTo(index + 1));
+    dots.forEach((dot, i) => dot.addEventListener("click", () => goTo(i)));
   }
 
   function initCategoryFilter() {

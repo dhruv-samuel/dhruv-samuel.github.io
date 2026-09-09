@@ -32,11 +32,14 @@ const rest = allProjects.slice(CAROUSEL_SIZE);
       {carouselItems.length > 0 && (
         <div class="hero-carousel" id="hero-carousel" data-reveal>
           {carouselItems.map((project, i) => (
-            <a
+            <div
               class={`hero-slide reel-featured${i === 0 ? " is-active" : ""}`}
-              href={withBase(`/work/${project.id}/`)}
+              data-vimeo={project.data.vimeo_id}
+              data-youtube={project.data.youtube_id}
+              data-title={project.data.title}
+              data-thumb={project.data.thumbnail ? withBase(project.data.thumbnail) : ""}
             >
-              <div class="media-block reel-featured-media">
+              <div class="media-block reel-featured-media" data-carousel-media>
                 {project.data.thumbnail ? (
                   <img src={withBase(project.data.thumbnail)} alt={project.data.title} />
                 ) : (
@@ -45,15 +48,31 @@ const rest = allProjects.slice(CAROUSEL_SIZE);
                 <span class="reel-play reel-play-lg" aria-hidden="true">&#9654;</span>
               </div>
               <div class="reel-featured-caption">
-                <p class="reel-category">{categories[project.data.category]}</p>
-                <h3>{project.data.title}</h3>
+                <div>
+                  <p class="reel-category">{categories[project.data.category]}</p>
+                  <h3>{project.data.title}</h3>
+                </div>
+                <a class="carousel-view-link" href={withBase(`/work/${project.id}/`)}>View project &rarr;</a>
               </div>
-            </a>
+            </div>
           ))}
           {carouselItems.length > 1 && (
             <>
-              <button type="button" class="carousel-arrow carousel-prev" aria-label="Previous">&larr;</button>
-              <button type="button" class="carousel-arrow carousel-next" aria-label="Next">&rarr;</button>
+              <button type="button" class="carousel-arrow carousel-prev" aria-label="Previous video">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
+              </button>
+              <button type="button" class="carousel-arrow carousel-next" aria-label="Next video">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+              </button>
+              <div class="carousel-dots">
+                {carouselItems.map((project, i) => (
+                  <button
+                    type="button"
+                    class={`carousel-dot${i === 0 ? " is-active" : ""}`}
+                    aria-label={`Show ${project.data.title}`}
+                  ></button>
+                ))}
+              </div>
             </>
           )}
         </div>

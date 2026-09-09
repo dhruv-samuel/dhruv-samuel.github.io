@@ -40,8 +40,13 @@ const heroVideo = "";
 
   <section class="motto">
     <div class="wrap">
-      <p class="motto-text" data-reveal>Consumption <span class="motto-symbol">&#8733;</span> Creativity</p>
-      <p class="motto-values" data-reveal>Change &bull; Unity &bull; Equity</p>
+      <a class="motto-link" href={withBase("/values/")} data-reveal>
+        <p class="motto-text">Consumption <span class="motto-symbol">&#8733;</span> Creativity</p>
+        <p class="motto-values">
+          Change &bull; Unity &bull; Equity
+          <span class="motto-cta">What this means &rarr;</span>
+        </p>
+      </a>
     </div>
   </section>
 </Layout>
