@@ -36,8 +36,8 @@
       const thumb = slide.dataset.thumb || "";
       const title = slide.dataset.title || "";
       media.innerHTML = thumb
-        ? `<img src="${thumb}" alt="${title}" /><span class="reel-play reel-play-lg" aria-hidden="true">&#9654;</span>`
-        : `<div class="placeholder-media"><span>${title}</span></div><span class="reel-play reel-play-lg" aria-hidden="true">&#9654;</span>`;
+        ? `<img src="${thumb}" alt="${title}" /><span class="reel-play reel-play-lg" aria-hidden="true"></span>`
+        : `<div class="placeholder-media"><span>${title}</span></div><span class="reel-play reel-play-lg" aria-hidden="true"></span>`;
     };
 
     const play = (slide: HTMLElement) => {
