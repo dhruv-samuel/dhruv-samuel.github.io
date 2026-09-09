@@ -9,12 +9,10 @@ const usedCategories = Object.keys(categories).filter((key) =>
   allProjects.some((project) => project.data.category === key)
 ) as (keyof typeof categories)[];
 
-// VFX/3D breakdowns get the full-bleed feed treatment. Short-form edits/AMVs
-// get a dense thumbnail grid instead so the page stays browsable — but every
-// project, in either section, links out to its own full detail page.
-const caseStudies = allProjects.filter((p) => p.data.category === "vfx-3d");
-const reelItems = allProjects.filter((p) => p.data.category !== "vfx-3d");
-const [featuredReel, ...restReel] = reelItems;
+// One coherent feed instead of a separate layout per category: the newest
+// project leads as a large featured banner, everything else sits in a single
+// grid underneath. The category filter narrows both at once.
+const [featured, ...rest] = allProjects;
 ---
 <Layout title="Work">
   <section class="work-page">
@@ -28,93 +26,50 @@ const [featuredReel, ...restReel] = reelItems;
           ))}
         </div>
       )}
-    </div>
 
-    {caseStudies.length > 0 && (
-      <div class="case-study-section" data-section="vfx-3d">
-        <div class="wrap"><h2>Case studies</h2></div>
-        <div class="project-feed">
-          {caseStudies.map((project) => (
-            <a
-              class="feed-item"
-              href={withBase(`/work/${project.id}/`)}
-              data-reveal
-              data-category={project.data.category}
-            >
-              <div class="media-block feed-media">
-                {project.data.thumbnail ? (
-                  <img src={withBase(project.data.thumbnail)} alt={project.data.title} />
-                ) : (
-                  <div class="placeholder-media"><span>{project.data.title}</span></div>
-                )}
-                <span class="hover-label">View project &rarr;</span>
-              </div>
-              <div class="feed-item-caption wrap">
-                <div>
-                  <p class="feed-item-category">{categories[project.data.category]}</p>
-                  <h3>{project.data.title}</h3>
-                  <p class="feed-item-role">{project.data.role}</p>
-                </div>
-                {project.data.software.length > 0 && (
-                  <ul class="tag-list">
-                    {project.data.software.slice(0, 3).map((tool) => <li>{tool}</li>)}
-                  </ul>
-                )}
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    )}
+      {featured && (
+        <a
+          class="reel-featured"
+          href={withBase(`/work/${featured.id}/`)}
+          data-reveal
+          data-category={featured.data.category}
+        >
+          <div class="media-block reel-featured-media">
+            {featured.data.thumbnail ? (
+              <img src={withBase(featured.data.thumbnail)} alt={featured.data.title} />
+            ) : (
+              <div class="placeholder-media"><span>{featured.data.title}</span></div>
+            )}
+            <span class="reel-play reel-play-lg" aria-hidden="true">&#9654;</span>
+          </div>
+          <div class="reel-featured-caption">
+            <p class="reel-category">{categories[featured.data.category]}</p>
+            <h3>{featured.data.title}</h3>
+          </div>
+        </a>
+      )}
 
-    {reelItems.length > 0 && (
-      <div class="wrap reel-section" data-section="reel">
-        <h2>Edits &amp; AMVs</h2>
-
-        {featuredReel && (
+      <div class="reel-grid">
+        {rest.map((project) => (
           <a
-            class="reel-featured"
-            href={withBase(`/work/${featuredReel.id}/`)}
+            class="reel-item"
+            href={withBase(`/work/${project.id}/`)}
             data-reveal
-            data-category={featuredReel.data.category}
+            data-category={project.data.category}
           >
-            <div class="media-block reel-featured-media">
-              {featuredReel.data.thumbnail ? (
-                <img src={withBase(featuredReel.data.thumbnail)} alt={featuredReel.data.title} />
+            <div class="media-block reel-media">
+              {project.data.thumbnail ? (
+                <img src={withBase(project.data.thumbnail)} alt={project.data.title} loading="lazy" />
               ) : (
-                <div class="placeholder-media"><span>{featuredReel.data.title}</span></div>
+                <div class="placeholder-media"><span>{project.data.title}</span></div>
               )}
-              <span class="reel-play reel-play-lg" aria-hidden="true">&#9654;</span>
+              <span class="reel-play" aria-hidden="true">&#9654;</span>
             </div>
-            <div class="reel-featured-caption">
-              <p class="reel-category">{categories[featuredReel.data.category]}</p>
-              <h3>{featuredReel.data.title}</h3>
-            </div>
+            <p class="reel-category">{categories[project.data.category]}</p>
+            <p class="reel-title">{project.data.title}</p>
           </a>
-        )}
-
-        <div class="reel-grid">
-          {restReel.map((project) => (
-            <a
-              class="reel-item"
-              href={withBase(`/work/${project.id}/`)}
-              data-reveal
-              data-category={project.data.category}
-            >
-              <div class="media-block reel-media">
-                {project.data.thumbnail ? (
-                  <img src={withBase(project.data.thumbnail)} alt={project.data.title} loading="lazy" />
-                ) : (
-                  <div class="placeholder-media"><span>{project.data.title}</span></div>
-                )}
-                <span class="reel-play" aria-hidden="true">&#9654;</span>
-              </div>
-              <p class="reel-category">{categories[project.data.category]}</p>
-              <p class="reel-title">{project.data.title}</p>
-            </a>
-          ))}
-        </div>
+        ))}
       </div>
-    )}
+    </div>
   </section>
 </Layout>
