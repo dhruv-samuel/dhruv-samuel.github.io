@@ -9,10 +9,12 @@ const usedCategories = Object.keys(categories).filter((key) =>
   allProjects.some((project) => project.data.category === key)
 ) as (keyof typeof categories)[];
 
-// One coherent feed instead of a separate layout per category: the newest
-// project leads as a large featured banner, everything else sits in a single
-// grid underneath. The category filter narrows both at once.
-const [featured, ...rest] = allProjects;
+// The newest few projects lead as an arrow-controlled carousel, everything
+// else sits in a single grid underneath. The category filter only narrows
+// the grid — the carousel is a fixed set of highlights.
+const CAROUSEL_SIZE = 5;
+const carouselItems = allProjects.slice(0, CAROUSEL_SIZE);
+const rest = allProjects.slice(CAROUSEL_SIZE);
 ---
 <Layout title="Work">
   <section class="work-page">
@@ -27,26 +29,34 @@ const [featured, ...rest] = allProjects;
         </div>
       )}
 
-      {featured && (
-        <a
-          class="reel-featured"
-          href={withBase(`/work/${featured.id}/`)}
-          data-reveal
-          data-category={featured.data.category}
-        >
-          <div class="media-block reel-featured-media">
-            {featured.data.thumbnail ? (
-              <img src={withBase(featured.data.thumbnail)} alt={featured.data.title} />
-            ) : (
-              <div class="placeholder-media"><span>{featured.data.title}</span></div>
-            )}
-            <span class="reel-play reel-play-lg" aria-hidden="true">&#9654;</span>
-          </div>
-          <div class="reel-featured-caption">
-            <p class="reel-category">{categories[featured.data.category]}</p>
-            <h3>{featured.data.title}</h3>
-          </div>
-        </a>
+      {carouselItems.length > 0 && (
+        <div class="hero-carousel" id="hero-carousel" data-reveal>
+          {carouselItems.map((project, i) => (
+            <a
+              class={`hero-slide reel-featured${i === 0 ? " is-active" : ""}`}
+              href={withBase(`/work/${project.id}/`)}
+            >
+              <div class="media-block reel-featured-media">
+                {project.data.thumbnail ? (
+                  <img src={withBase(project.data.thumbnail)} alt={project.data.title} />
+                ) : (
+                  <div class="placeholder-media"><span>{project.data.title}</span></div>
+                )}
+                <span class="reel-play reel-play-lg" aria-hidden="true">&#9654;</span>
+              </div>
+              <div class="reel-featured-caption">
+                <p class="reel-category">{categories[project.data.category]}</p>
+                <h3>{project.data.title}</h3>
+              </div>
+            </a>
+          ))}
+          {carouselItems.length > 1 && (
+            <>
+              <button type="button" class="carousel-arrow carousel-prev" aria-label="Previous">&larr;</button>
+              <button type="button" class="carousel-arrow carousel-next" aria-label="Next">&rarr;</button>
+            </>
+          )}
+        </div>
       )}
 
       <div class="reel-grid">

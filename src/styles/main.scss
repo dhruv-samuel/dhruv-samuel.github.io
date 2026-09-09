@@ -457,7 +457,7 @@ html[data-theme="light"] .theme-toggle .icon-moon {
 .work-page h1 { margin-bottom: 2rem; }
 
 /* ==========================================================================
-   Motto (homepage, right below the hero video) — reacts to the cursor
+   Motto (homepage, right below the hero video)
    ========================================================================== */
 
 .motto {
@@ -473,21 +473,12 @@ html[data-theme="light"] .theme-toggle .icon-moon {
   letter-spacing: 0.02em;
   line-height: 1.15;
   margin: 0 0 1rem;
-}
-
-.motto-char {
-  display: inline-block;
-  transition: transform 0.25s cubic-bezier(0.33, 1, 0.68, 1), color 0.25s ease;
-  will-change: transform;
-}
-
-.motto-space {
-  width: 0.32em;
+  text-wrap: balance;
 }
 
 .motto-symbol {
   color: var(--text);
-  padding: 0 0.1em;
+  padding: 0 0.15em;
 }
 
 .motto-values {
@@ -498,75 +489,52 @@ html[data-theme="light"] .theme-toggle .icon-moon {
   margin: 0;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .motto-char {
-    transition: none;
-    transform: none !important;
-  }
-}
-
 /* ==========================================================================
-   Homepage "See my work" CTA (replaces the old Selected Work grid)
+   Work listing page: an arrow-controlled carousel + one grid
    ========================================================================== */
 
-.work-cta {
-  padding: 3rem 0 6rem;
-  text-align: center;
-  border-top: 1px solid var(--border);
-}
-
-.work-cta-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
-  font-family: var(--font-display);
-  color: var(--text);
-  font-size: clamp(2rem, 8vw, 5rem);
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  line-height: 1;
-}
-
-.work-cta-arrow {
-  display: inline-block;
-  color: var(--accent);
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.work-cta-link:hover .work-cta-arrow,
-.work-cta-link:focus-visible .work-cta-arrow {
-  transform: translateX(0.25em);
-}
-
-.work-cta-text {
+.hero-carousel {
   position: relative;
+  margin-bottom: 2.5rem;
 }
 
-.work-cta-text::after {
-  content: "";
+.hero-carousel .hero-slide {
+  display: none;
+}
+
+.hero-carousel .hero-slide.is-active {
+  display: block;
+}
+
+.carousel-arrow {
   position: absolute;
-  left: 0;
-  bottom: 0.05em;
-  width: 100%;
-  height: 3px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.35s ease;
+  top: calc(50% - 1rem);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 100%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
 }
 
-.work-cta-link:hover .work-cta-text::after,
-.work-cta-link:focus-visible .work-cta-text::after {
-  transform: scaleX(1);
+.carousel-arrow:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: scale(1.06);
 }
 
-/* ==========================================================================
-   Work listing page: one featured banner + one grid
-   ========================================================================== */
+.carousel-prev { left: 1rem; }
+.carousel-next { right: 1rem; }
 
 .reel-featured {
   display: block;
-  margin-bottom: 2.5rem;
 }
 
 .reel-featured-media {
@@ -931,34 +899,3 @@ html[data-theme="dark"] .grain-overlay {
   opacity: 0.06;
 }
 
-/* ==========================================================================
-   Page transition overlay (accent-color wipe between route navigations)
-   ========================================================================== */
-
-.page-transition-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  background: var(--accent);
-  transform: translateY(-100%);
-  transition: transform 0.48s cubic-bezier(0.76, 0, 0.24, 1);
-  pointer-events: none;
-}
-
-.page-transition-overlay.is-covering {
-  transform: translateY(0%);
-}
-
-.page-transition-overlay.is-revealing {
-  transform: translateY(100%);
-}
-
-.page-transition-overlay.no-transition {
-  transition: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .page-transition-overlay {
-    display: none;
-  }
-}
