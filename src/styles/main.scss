@@ -358,6 +358,13 @@ html[data-theme="light"] .theme-toggle .icon-moon {
   object-fit: cover;
 }
 
+/* Chromeless background video (no controls to click) — let the pointer
+   pass through to the page underneath instead of into the iframe's own
+   browsing context, so the custom cursor can keep tracking over it. */
+.bg-video {
+  pointer-events: none;
+}
+
 .hero-media.placeholder-media {
   position: absolute;
   inset: 0;

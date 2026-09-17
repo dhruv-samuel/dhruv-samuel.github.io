@@ -13,6 +13,7 @@ const heroVideo = "";
     {heroVimeoId ? (
       <div class="media-block hero-media">
         <iframe
+          class="bg-video"
           src={`https://player.vimeo.com/video/${heroVimeoId}?background=1&autoplay=1&loop=1&byline=0&title=0`}
           allow="autoplay; fullscreen; picture-in-picture"
           loading="lazy"
@@ -20,7 +21,7 @@ const heroVideo = "";
       </div>
     ) : heroVideo ? (
       <div class="media-block hero-media">
-        <video src={withBase(heroVideo)} autoplay muted loop playsinline />
+        <video class="bg-video" src={withBase(heroVideo)} autoplay muted loop playsinline />
       </div>
     ) : (
       <div class="media-block hero-media placeholder-media">

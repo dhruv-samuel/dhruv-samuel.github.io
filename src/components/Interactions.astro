@@ -132,10 +132,11 @@
     });
 
     // The ring eases toward the dot's position every frame (simple lerp)
-    // instead of tracking 1:1, giving it a trailing, weighted feel.
+    // instead of tracking 1:1, giving it a trailing, weighted feel without
+    // feeling laggy.
     (function tick() {
-      ringX += (mouseX - ringX) * 0.16;
-      ringY += (mouseY - ringY) * 0.16;
+      ringX += (mouseX - ringX) * 0.35;
+      ringY += (mouseY - ringY) * 0.35;
       ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
       requestAnimationFrame(tick);
     })();
@@ -144,16 +145,17 @@
       const target = (e.target as HTMLElement).closest("a, button, [data-carousel-media]");
       ring.classList.toggle("is-active", !!target);
 
-      // Vimeo/YouTube embeds are cross-origin iframes: once the pointer is
-      // over one, its mousemove events never reach this document, so our
-      // cursor would otherwise freeze in place, stuck on top of the video.
-      // Hide it right as the pointer crosses into the embed's container and
-      // let the iframe's own native cursor take over; it reappears the
-      // moment the pointer is back over plain page content.
-      const mediaBlock = (e.target as HTMLElement).closest(".media-block");
-      const overEmbed = !!(mediaBlock && mediaBlock.querySelector("iframe"));
-      dot.style.opacity = overEmbed ? "0" : "";
-      ring.style.opacity = overEmbed ? "0" : "";
+      // Interactive (non-decorative) iframes — the Vimeo/YouTube embeds on
+      // project pages and the carousel, which have real play/scrub controls
+      // — are cross-origin: once the pointer is over one, its mousemove
+      // events never reach this document, so our cursor would otherwise
+      // freeze in place on top of the video. Hide it and let the iframe's
+      // own native cursor take over; it reappears once back on plain page
+      // content. Chromeless background videos (.bg-video, e.g. the homepage
+      // hero) are excluded via pointer-events: none in CSS, so the pointer
+      // never actually lands on them and this never fires for those.
+      dot.style.opacity = (e.target as HTMLElement).tagName === "IFRAME" ? "0" : "";
+      ring.style.opacity = (e.target as HTMLElement).tagName === "IFRAME" ? "0" : "";
     });
 
     document.addEventListener("mouseleave", () => {
