@@ -125,18 +125,31 @@
     let ringX = mouseX;
     let ringY = mouseY;
 
+    // A short buffer of recent positions, so the ring can target where the
+    // dot *was* a beat ago instead of where it is right now — an actual
+    // pause before it starts moving, not just a slower catch-up curve.
+    const RING_DELAY_MS = 90;
+    const history: { x: number; y: number; t: number }[] = [];
+
     document.addEventListener("mousemove", (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
       dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+      history.push({ x: mouseX, y: mouseY, t: performance.now() });
+      if (history.length > 120) history.shift();
     });
 
-    // The ring eases toward the dot's position every frame (simple lerp)
-    // instead of tracking 1:1, giving it a trailing, weighted feel without
-    // feeling laggy.
     (function tick() {
-      ringX += (mouseX - ringX) * 0.35;
-      ringY += (mouseY - ringY) * 0.35;
+      const cutoff = performance.now() - RING_DELAY_MS;
+      while (history.length > 1 && history[1].t <= cutoff) {
+        history.shift();
+      }
+      const delayed = history[0] || { x: mouseX, y: mouseY };
+
+      // Still eases toward that delayed point (rather than snapping to it)
+      // so the motion stays smooth instead of stepping between samples.
+      ringX += (delayed.x - ringX) * 0.35;
+      ringY += (delayed.y - ringY) * 0.35;
       ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
       requestAnimationFrame(tick);
     })();
