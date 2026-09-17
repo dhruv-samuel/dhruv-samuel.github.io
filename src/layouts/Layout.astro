@@ -51,6 +51,8 @@ const pageDescription = description ?? site.description;
   </head>
   <body>
     <div class="grain-overlay" aria-hidden="true"></div>
+    <div id="cursor-ring" class="cursor-ring" transition:persist aria-hidden="true"></div>
+    <div id="cursor-dot" class="cursor-dot" transition:persist aria-hidden="true"></div>
     <Header />
     <main>
       <slot />
