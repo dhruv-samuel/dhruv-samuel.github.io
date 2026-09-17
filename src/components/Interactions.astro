@@ -105,19 +105,20 @@
   }
 
   function initCustomCursor() {
-    if (
-      !window.matchMedia("(hover: hover) and (pointer: fine)").matches ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      return;
-    }
+    const supportsCursor =
+      window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Re-applied on every navigation: <body> is replaced by Astro's router on
+    // each page swap (unlike the persisted dot/ring below), so a class set
+    // on it once at first load doesn't survive to the next page.
+    document.body.classList.toggle("has-custom-cursor", supportsCursor);
+    if (!supportsCursor) return;
 
     const dot = document.getElementById("cursor-dot");
     const ring = document.getElementById("cursor-ring");
     if (!dot || !ring || dot.dataset.bound) return;
     dot.dataset.bound = "true";
-
-    document.body.classList.add("has-custom-cursor");
 
     let mouseX = window.innerWidth / 2;
     let mouseY = window.innerHeight / 2;
@@ -142,6 +143,17 @@
     document.addEventListener("mouseover", (e) => {
       const target = (e.target as HTMLElement).closest("a, button, [data-carousel-media]");
       ring.classList.toggle("is-active", !!target);
+
+      // Vimeo/YouTube embeds are cross-origin iframes: once the pointer is
+      // over one, its mousemove events never reach this document, so our
+      // cursor would otherwise freeze in place, stuck on top of the video.
+      // Hide it right as the pointer crosses into the embed's container and
+      // let the iframe's own native cursor take over; it reappears the
+      // moment the pointer is back over plain page content.
+      const mediaBlock = (e.target as HTMLElement).closest(".media-block");
+      const overEmbed = !!(mediaBlock && mediaBlock.querySelector("iframe"));
+      dot.style.opacity = overEmbed ? "0" : "";
+      ring.style.opacity = overEmbed ? "0" : "";
     });
 
     document.addEventListener("mouseleave", () => {
@@ -154,9 +166,8 @@
     });
   }
 
-  initCustomCursor();
-
   document.addEventListener("astro:page-load", initScrollReveal);
   document.addEventListener("astro:page-load", initHeroCarousel);
   document.addEventListener("astro:page-load", initCategoryFilter);
+  document.addEventListener("astro:page-load", initCustomCursor);
 </script>
